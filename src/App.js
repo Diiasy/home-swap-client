@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
-import Map from "./pages/Map";
-import {Route} from "react-router-dom";
-
-
+import { Route, Switch } from 'react-router-dom'; 
+import Home from './pages/Home';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Logout from './pages/Logout';
+import Profile from './pages/Profile';
 
 class App extends Component {
-  state = {
-    message: null
-  }
-
-  componentDidMount() {
-    axios.get(`${process.env.REACT_APP_BASE_URL}`)
-    .then(response => {
-      this.setState({
-        message: response.data.message
-      })
-    })
-  }
-
   render() {
     return(
       <div className="App">
-        <Route path="/map" component={Map}/>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/user/signup" component={Signup} />
+          <Route exact path="/user/login" component={Login} />
+          <Route exact path="/user/logout" component={Logout} />
+          <Route exact path="/user/profile/:id" component={Profile} />
+        </Switch>
       </div>
     )
   }
