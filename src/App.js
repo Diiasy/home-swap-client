@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import Map from "./pages/Map";
+import {Route} from "react-router-dom";
+
+
 
 class App extends Component {
   state = {
@@ -10,7 +14,6 @@ class App extends Component {
   componentDidMount() {
     axios.get(`${process.env.REACT_APP_BASE_URL}`)
     .then(response => {
-      debugger
       this.setState({
         message: response.data.message
       })
@@ -20,11 +23,7 @@ class App extends Component {
   render() {
     return(
       <div className="App">
-        {
-          this.state.message ? 
-          <h1>{this.state.message}</h1> :
-          <h1>Loading...</h1>
-        }
+        <Route path="/map" component={Map}/>
       </div>
     )
   }
