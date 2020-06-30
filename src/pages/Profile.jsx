@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link, Route } from 'react-router-dom'; 
 import ProfileCard from '../components/ProfileCard';
 import EditProfile from './EditProfile';
-import { getUser } from '../utils/auth'
+import { getUser } from '../utils/auth';
 
 class Profile extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class Profile extends Component {
         })
         .catch (error => {
             this.setState({error});
-        })
+        });
     }
 
     toggleForm(){
@@ -39,7 +39,6 @@ class Profile extends Component {
     }
 
     profileUpdate(response){
-        debugger
         this.toggleForm();
         let user = response;
         this.setState({
@@ -48,25 +47,25 @@ class Profile extends Component {
     }
 
     render() {
-        {
-            if(this.state.user === null) return <h1>Loading...</h1>;
-            if (this.currentUser._id === this.props.match.params.id) {
-                return(
-                    <Default>
-                        <ProfileCard currentProfile = {this.state.user}/>
-                        <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={this.toggleForm}>Edit profile</Link>
-                        {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                    </Default>
-                )
-            } else {
-                return(
-                    <Default>
-                        <ProfileCard currentProfile = {this.props.match.params.id}/>
-                    </Default>
-                )
-            }
+
+        if(this.state.user === null) return <h1>Loading...</h1>;
+        if (this.currentUser._id === this.props.match.params.id) {
+            return(
+                <Default>
+                    <ProfileCard currentProfile = {this.state.user}/>
+                    <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={this.toggleForm}>Edit profile</Link>
+                    {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                </Default>
+            )
+        } else {
+            return(
+                <Default>
+                    <ProfileCard currentProfile = {this.props.match.params.id}/>
+                </Default>
+            )
         }
     }
+
 }
 
 export default Profile;
