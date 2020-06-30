@@ -10,6 +10,7 @@ function Navbar() {
       <nav className="navbar navbar-dark bg-primary mb-3">
         <div className="container">
           <Link className="navbar-brand" to='/'>Home</Link>
+          <Link className="navbar-brand" to={`/user/profile/${user._id}`}>Welcome {user.username}</Link>
           <Link className="navbar-brand" to='/user/logout'>Logout</Link>
         </div>
       </nav>

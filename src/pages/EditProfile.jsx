@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { getUser } from '../utils/auth';
 import qs from 'qs';
 
 class EditProfile extends Component {
@@ -11,8 +10,19 @@ class EditProfile extends Component {
     }
 
     state = {
-        user: getUser(),
+        user: {},
         error: null
+    }
+
+    componentDidMount(){
+        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}`)
+        .then(response => {
+            let user = response.data;
+            this.setState({user});
+        })
+        .catch (error => {
+            this.setState({error});
+        })
     }
 
     handleChange(e) {
@@ -23,26 +33,28 @@ class EditProfile extends Component {
 
     editProfile(e) {
         e.preventDefault();
-        debugger
+        // debugger
         axios({
             url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/edit`,
             data: qs.stringify(this.state.user),
             withCredentials: true,
             method: "POST"
         })
-        .then(() => {
-            this.props.editProfile();
-            this.props.history.push(`/user/profile/${this.props.match.params.id}`);
+        .then(response=> {
+            debugger
+            this.props.profileUpdate(response.data);
+            this.props.history.push(`/user/profile/${response.data._id}`);
         })
-        .catch(err => {
-            console.log(err)
+        .catch(error => {
+            // debugger
+            this.setState({error});
         })
     }
 
     render() {
         return(
             <div className="new-beer">
-                <form className="container">
+                <form onSubmit={this.editProfile}  className="container">
                     <div className="form-group">
                         <label for="firstname">Name</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="name" value={this.state.user.name} placeholder="First name" />
@@ -53,14 +65,14 @@ class EditProfile extends Component {
                     </div>
                     <div className="form-group">
                         <label for="email">Home description</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="homeDescription" value={this.state.user.city} placeholder="Home description" />
+                        <input className="form-control" type="text" onChange={this.handleChange} name="homeDescription" value={this.state.user.homeDescription} placeholder="Home description" />
                     </div>
                     <div className="form-group">
                         <label for="email">City</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="city" value={this.state.user.city} placeholder="City" />
                     </div>
                     
-                    <button onClick={this.editProfile} type="submit">Submit</button>
+                    <button type="submit">Submit</button>
                 </form>
                 {this.state.error && <p>{this.state.error}</p>}
             </div>

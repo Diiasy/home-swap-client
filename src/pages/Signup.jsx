@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Default from '../layouts/Default';
-import { signup } from "../utils/auth";
+import { signup, getUser } from "../utils/auth";
 
 class Signup extends Component {
     constructor(props) {
@@ -14,6 +14,7 @@ class Signup extends Component {
         error: null
     }
 
+
     handleChange(e) {
         let user = {...this.state.user};
         user[e.target.name] = e.target.value;
@@ -24,7 +25,8 @@ class Signup extends Component {
         e.preventDefault();
         signup(this.state.user)
         .then(() => {
-            this.props.history.push(`/user/login`);
+            let userId = getUser();
+            this.props.history.push(`/user/profile/${userId._id}`);
         })
         .catch(error => {
             this.setState({error});

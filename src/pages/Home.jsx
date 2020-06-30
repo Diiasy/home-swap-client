@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Default from '../layouts/Default';
+import { getUser } from '../utils/auth';
 
 class Home extends Component {
   state = {
-    message: null
+    message: null,
   }
 
+  
   componentDidMount() {
     axios.get(`${process.env.REACT_APP_BASE_URL}`)
     .then(response => {
