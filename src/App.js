@@ -6,6 +6,8 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Profile from './pages/Profile';
+import Map from './pages/Map';
+
 
 class App extends Component {
   render() {
@@ -17,6 +19,7 @@ class App extends Component {
           <Route exact path="/user/login" component={Login} />
           <Route exact path="/user/logout" component={Logout} />
           <Route exact path="/user/profile/:id" component={Profile} />
+          <Route exact path="/map" component={Map} />
         </Switch>
       </div>
     )
