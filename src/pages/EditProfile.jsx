@@ -11,7 +11,8 @@ class EditProfile extends Component {
     }
 
     state = {
-        user: getUser()
+        user: getUser(),
+        error: null
     }
 
     handleChange(e) {
@@ -22,15 +23,16 @@ class EditProfile extends Component {
 
     editProfile(e) {
         e.preventDefault();
+        debugger
         axios({
-            url: `${process.env.REACT_APP_BASE_URL}/profile/${this.props.match.params.id}/edit`,
+            url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/edit`,
             data: qs.stringify(this.state.user),
             withCredentials: true,
             method: "POST"
         })
         .then(() => {
             this.props.editProfile();
-            this.props.history.push(`/user/profile/:id`);
+            this.props.history.push(`/user/profile/${this.props.match.params.id}`);
         })
         .catch(err => {
             console.log(err)
@@ -42,20 +44,20 @@ class EditProfile extends Component {
             <div className="new-beer">
                 <form className="container">
                     <div className="form-group">
-                        <label for="username">Username</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="username" value={this.state.user.username} placeholder="Username" />
+                        <label for="firstname">Name</label>
+                        <input className="form-control" type="text" onChange={this.handleChange} name="name" value={this.state.user.name} placeholder="First name" />
                     </div>
                     <div className="form-group">
-                        <label for="firstname">First name</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="firstname" value={this.state.user.firstname} placeholder="First name" />
+                        <label for="lastname">Home name</label>
+                        <input className="form-control" type="text" onChange={this.handleChange} name="homeName" value={this.state.user.homeName} placeholder="Home name" />
                     </div>
                     <div className="form-group">
-                        <label for="lastname">Last name</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="lastname" value={this.state.user.lastname} placeholder="Last name" />
+                        <label for="email">Home description</label>
+                        <input className="form-control" type="text" onChange={this.handleChange} name="homeDescription" value={this.state.user.city} placeholder="Home description" />
                     </div>
                     <div className="form-group">
-                        <label for="email">Email</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="email" value={this.state.user.email} placeholder="Email" />
+                        <label for="email">City</label>
+                        <input className="form-control" type="text" onChange={this.handleChange} name="city" value={this.state.user.city} placeholder="City" />
                     </div>
                     
                     <button onClick={this.editProfile} type="submit">Submit</button>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Default from '../layouts/Default';
 import { getUser } from '../utils/auth';
-// import { Link, Route } from 'react-router-dom'; 
+import { Link, Route } from 'react-router-dom'; 
 import ProfileCard from '../components/ProfileCard';
-// import EditProfile from './EditProfile';
+import EditProfile from './EditProfile';
 
 class Profile extends Component {
     constructor(props) {
@@ -18,6 +18,7 @@ class Profile extends Component {
     }
 
     toggleForm(){
+        debugger
         this.setState({
             form: !this.state.form
         });
@@ -25,22 +26,21 @@ class Profile extends Component {
 
     render() {
         {
-            if (this.user.id === this.props.match.params.id) {
+           if (this.user._id === this.props.match.params.id) {
                 return(
                     <Default>
-                        <ProfileCard />
-                        {/* <Link to={`/user/profile/edit`} onClick={this.toggleForm}>Edit profile</Link> */}
-                        {/* {this.state.form && <Route path="/user/profile/edit" render={(props) => <EditProfile {...props} editProfile={this.toggleForm} />} />} */}
+                        <ProfileCard currentProfile = {this.props.match.params.id}/>
+                        <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={this.toggleForm}>Edit profile</Link>
+                        {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} editProfile={this.toggleForm} />} />}
                     </Default>
                 )
             } else {
                 return(
                     <Default>
-                        <ProfileCard />
+                        <ProfileCard currentProfile = {this.props.match.params.id}/>
                     </Default>
                 )
             }
-
         }
     }
 }
