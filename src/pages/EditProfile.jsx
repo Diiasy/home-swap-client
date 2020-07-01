@@ -33,7 +33,6 @@ class EditProfile extends Component {
 
     editProfile(e) {
         e.preventDefault();
-        // debugger
         axios({
             url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/edit`,
             data: qs.stringify(this.state.user),
@@ -41,19 +40,17 @@ class EditProfile extends Component {
             method: "POST"
         })
         .then(response=> {
-            debugger
             this.props.profileUpdate(response.data);
             this.props.history.push(`/user/profile/${response.data._id}`);
         })
         .catch(error => {
-            // debugger
             this.setState({error});
         })
     }
 
     render() {
         return(
-            <div className="new-beer">
+            <div>
                 <form onSubmit={this.editProfile}  className="container">
                     <div className="form-group">
                         <label for="firstname">Name</label>

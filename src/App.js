@@ -7,7 +7,6 @@ import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Profile from './pages/Profile';
 import Map from './pages/Map';
-import DateCalendar from './components/Calendar';
 
 
 
@@ -22,7 +21,6 @@ class App extends Component {
           <Route exact path="/user/logout" component={Logout} />
           <Route path="/user/profile/:id" component={Profile} />
           <Route exact path="/map" component={Map} />
-          <Route exact path="/calendar" component={DateCalendar} />
 
         </Switch>
       </div>

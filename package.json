@@ -9,6 +9,7 @@
     "@wojtekmaj/react-daterange-picker": "^3.0.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "date-fns": "^2.14.0",
     "mapbox-gl": "^1.11.0",
     "qs": "^6.9.4",
     "react": "^16.13.1",

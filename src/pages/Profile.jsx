@@ -5,18 +5,22 @@ import { Link, Route } from 'react-router-dom';
 import ProfileCard from '../components/ProfileCard';
 import EditProfile from './EditProfile';
 import { getUser } from '../utils/auth';
+import Available from '../components/Calendar';
+
 
 class Profile extends Component {
     constructor(props) {
         super(props);
         this.toggleForm = this.toggleForm.bind(this);
         this.profileUpdate = this.profileUpdate.bind(this);
+        this.toggleEditCalendar = this.toggleEditCalendar.bind(this);
     }
 
     state = {
         user: null,
         form: false,
-        error: null
+        error: null,
+        editCalendar: false
     }
 
     currentUser = getUser();
@@ -34,15 +38,22 @@ class Profile extends Component {
 
     toggleForm(){
         this.setState({
-            form: !this.state.form
+            form: !this.state.form,
+        });
+    }
+
+    toggleEditCalendar(){
+        this.setState({
+            editCalendar: !this.state.editCalendar
         });
     }
 
     profileUpdate(response){
-        this.toggleForm();
         let user = response;
         this.setState({
-            user
+            user,
+            form: false,
+            editCalendar: false
         });
     }
 
@@ -55,6 +66,9 @@ class Profile extends Component {
                     <ProfileCard currentProfile = {this.state.user}/>
                     <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={this.toggleForm}>Edit profile</Link>
                     {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                    <Available currentProfile = {this.state.user}/>
+                    <Link to={`/user/profile/${this.props.match.params.id}/available`} onClick={this.toggleEditCalendar}>Provide Availability</Link>
+                    {this.state.editCalendar && <Route path={`/user/profile/:id/available`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                 </Default>
             )
         } else {
