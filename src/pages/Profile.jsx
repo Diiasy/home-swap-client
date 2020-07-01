@@ -66,9 +66,8 @@ class Profile extends Component {
                     <ProfileCard currentProfile = {this.state.user}/>
                     <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={this.toggleForm}>Edit profile</Link>
                     {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                    <Available currentProfile = {this.state.user}/>
                     <Link to={`/user/profile/${this.props.match.params.id}/available`} onClick={this.toggleEditCalendar}>Provide Availability</Link>
-                    {this.state.editCalendar && <Route path={`/user/profile/:id/available`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                    {this.state.editCalendar && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                 </Default>
             )
         } else {

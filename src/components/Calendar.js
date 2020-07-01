@@ -17,13 +17,13 @@ class Available extends React.Component {
         this.addAvailability = this.addAvailability.bind(this);
     }
 
-  state = {
-    startDate: new Date(),
-    endDate: new Date(),
-    selecting: false
-  };
- 
-  handleChange(e) {
+    state = {
+        startDate: new Date(),
+        endDate: new Date(),
+        selecting: false
+    }
+    
+    handleChange(e) {
         if(!this.state.selecting){
             this.setState({
                 startDate: e, 
@@ -40,40 +40,41 @@ class Available extends React.Component {
 
     addAvailability(e) {
         e.preventDefault();
-        let allDates = eachDayOfInterval({ start: new Date(this.state.startDate), end: new Date(this.state.endDate) })
-        // axios({
-        //     url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/available`,
-        //     data: qs.stringify(allDates),
-        //     withCredentials: true,
-        //     method: "POST"
-        // })
-        // .then(response=> {
-        //     this.props.profileUpdate(response.data);
-        //     this.props.history.push(`/user/profile/${response.data._id}`);
-        // })
-        // .catch(error => {
-        //     this.setState({error});
-        // })
-        console.log(allDates)
+        let allDates = Object.values(eachDayOfInterval({ start: new Date(this.state.startDate), end: new Date(this.state.endDate) }))
+        
+        axios({
+            url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/availabilty`,
+            data: qs.stringify(allDates),
+            withCredentials: true,
+            method: "POST"
+        })
+        .then(response=> {
+            this.props.profileUpdate(response.data);
+            this.props.history.push(`/user/profile/${response.data._id}`);
+        })
+        .catch(error => {
+            this.setState({error});
+        })
+
     }
  
-  render() {
-    return (
-        <div>
-            <DatePicker
-                inline
-                onChange={this.handleChange}
-                minDate={subDays(new Date(), 1)}
-                startDate={this.state.startDate}
-                endDate={this.state.endDate}
-            />
-            <button onClick={this.addAvailability} type="submit">Submit</button>
+    render() {
+        return (
+            <div>
+                <DatePicker
+                    inline
+                    onChange={this.handleChange}
+                    minDate={subDays(new Date(), 1)}
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                />
+                <button onClick={this.addAvailability} type="submit">Submit</button>
 
 
-        </div>
+            </div>
 
-    );
-  }
-}
+        );
+    }
+    }
 
 export default Available;
