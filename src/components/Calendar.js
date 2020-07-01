@@ -5,9 +5,9 @@ import eachDayOfInterval from 'date-fns/eachDayOfInterval';
 import axios from 'axios';
 import qs from 'qs';
 import "react-datepicker/dist/react-datepicker.css";
+import { toDate } from 'date-fns';
 
  
-// CSS Modules, react-datepicker-cssmodules.css
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
  
 class Available extends React.Component {
@@ -18,9 +18,27 @@ class Available extends React.Component {
     }
 
     state = {
+        availability: null,
         startDate: new Date(),
         endDate: new Date(),
         selecting: false
+    }
+
+    componentDidMount(){
+        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}`)
+        .then(response => {
+            let allDates = response.data.availability;
+            // let availability = {[new Date(), subDays(new Date(), 1)]}
+            let availability = allDates.map((dateTime)=> {
+            let dt = new Date(dateTime);
+            return Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate());
+            })
+            this.setState({availability});
+            console.log(this.state.availability)
+        })
+        .catch (error => {
+            this.setState({error});
+        })
     }
     
     handleChange(e) {
@@ -40,8 +58,11 @@ class Available extends React.Component {
 
     addAvailability(e) {
         e.preventDefault();
-        let allDates = Object.values(eachDayOfInterval({ start: new Date(this.state.startDate), end: new Date(this.state.endDate) }))
-        
+        let allDateTimes = Object.values(eachDayOfInterval({ start: new Date(this.state.startDate), end: new Date(this.state.endDate) }))
+        let allDates = allDateTimes.map((dateTime)=> {
+            let dt = new Date(dateTime);
+            return Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate());
+        })
         axios({
             url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/availabilty`,
             data: qs.stringify(allDates),
@@ -63,8 +84,8 @@ class Available extends React.Component {
             <div>
                 <DatePicker
                     inline
+                    excludeDates={this.state.availability}
                     onChange={this.handleChange}
-                    minDate={subDays(new Date(), 1)}
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
                 />
