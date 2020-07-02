@@ -8,17 +8,14 @@ import { getUser } from '../utils/auth';
 import Available from '../components/AddDates';
 import RemoveDates from '../components/RemoveDates';
 import Calendar from '../components/Calendar';
-
-
+import AddReview from '../components/AddReview';
 
 
 class Profile extends Component {
     constructor(props) {
         super(props);
-        this.toggleForm = this.toggleForm.bind(this);
+        this.toggleForms = this.toggleForms.bind(this);
         this.profileUpdate = this.profileUpdate.bind(this);
-        this.toggleEditCalendar = this.toggleEditCalendar.bind(this);
-        this.toggleRemoveDates = this.toggleRemoveDates.bind(this);
     }
 
     state = {
@@ -43,23 +40,40 @@ class Profile extends Component {
         });
     }
 
-    toggleForm(){
-        this.setState({
-            form: !this.state.form,
-        });
-    }
-
-    toggleEditCalendar(){
-        this.setState({
-            editCalendar: !this.state.editCalendar,
-            calendar: !this.state.calendar
-        });
-    }
-
-    toggleRemoveDates(){
-        this.setState({
-            removeDates: !this.state.removeDates
-        });
+    toggleForms(theForm){
+        switch(theForm){
+            case "form":
+                this.setState({
+                    form: true,
+                    addDates: false,
+                    removeDates: false,
+                    calendar: false 
+                });
+                break;
+            case "addDates":
+                this.setState({
+                    form: false,
+                    addDates: true,
+                    removeDates: false,
+                    calendar: false 
+                });
+                break;
+            case "removeDates":
+                this.setState({
+                    form: false,
+                    addDates: false,
+                    removeDates: true,
+                    calendar: false 
+                });
+                break;
+            default:
+                this.setState({
+                    form: false,
+                    addDates: false,
+                    removeDates: false,
+                    calendar: true
+                });
+        }
     }
 
     profileUpdate(response){
@@ -67,8 +81,9 @@ class Profile extends Component {
         this.setState({
             user,
             form: false,
-            editCalendar: false,
-            removeDates: false
+            addDates: false,
+            removeDates: false,
+            calendar: true
         });
     }
 
@@ -78,19 +93,22 @@ class Profile extends Component {
             return(
                 <Default>
                     <ProfileCard user = {this.state.user}/>
-                    <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={this.toggleForm}>Edit profile</Link>
+                    <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit profile</Link>
+                    <Link to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
+                    <Link to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>
+                    { this.state.calendar && <Calendar user = {this.state.user} /> }
                     {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                    <Link to={`/user/profile/${this.props.match.params.id}/available`} onClick={this.toggleEditCalendar}>Provide Availability</Link>
-                    {this.state.editCalendar && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                    <Link to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={this.toggleRemoveDates}>Remove Availability</Link>
+                    {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                     {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                 </Default>
             )
         } else {
             return(
                 <Default>
-                    <ProfileCard user = {this.state.user}/>
-                    <Calendar user={this.state.user}/>
+                    <ProfileCard user = {this.state.user} />
+                    <Calendar user = {this.state.user}/>
+                    <AddReview user = {this.state.user}/>
+
                 </Default>
             )
         }
