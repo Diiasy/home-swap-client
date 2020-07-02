@@ -22,7 +22,7 @@ class Profile extends Component {
     }
 
     state = {
-        user: null,
+        user: {},
         form: false,
         error: null,
         editCalendar: false,
@@ -77,7 +77,7 @@ class Profile extends Component {
         if (this.currentUser._id === this.props.match.params.id) {
             return(
                 <Default>
-                    <ProfileCard currentProfile = {this.state.user}/>
+                    <ProfileCard user = {this.state.user}/>
                     <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={this.toggleForm}>Edit profile</Link>
                     {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                     <Link to={`/user/profile/${this.props.match.params.id}/available`} onClick={this.toggleEditCalendar}>Provide Availability</Link>
@@ -91,8 +91,6 @@ class Profile extends Component {
                 <Default>
                     <ProfileCard user = {this.state.user}/>
                     <Calendar user={this.state.user}/>
-
-
                 </Default>
             )
         }

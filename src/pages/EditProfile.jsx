@@ -9,6 +9,8 @@ class EditProfile extends Component {
         super();
         this.handleChange = this.handleChange.bind(this);
         this.editProfile = this.editProfile.bind(this);
+        // this.uploadPictures = this.uploadPictures.bind(this);
+        this.addPictureHandler = this.addPictureHandler.bind(this);
     }
 
     state = {
@@ -36,7 +38,6 @@ class EditProfile extends Component {
         user[e.target.name] = e.target.value;
         this.setState({ user });
     }
-
    
     editProfile(e) {
         e.preventDefault();
@@ -55,9 +56,12 @@ class EditProfile extends Component {
         })
     }
 
-    addPicture(e) {
-        e.preventDefault();
-        this.setState({ numOfPictures: this.state.numOfPictures + 1 });
+    addPictureHandler(uploadedPicture) {
+        let userCopy = JSON.parse(JSON.stringify(this.state.user));
+        userCopy.pictures.push(uploadedPicture)
+        this.setState({
+            user: userCopy
+        })
     }
 
     render() {
@@ -82,7 +86,7 @@ class EditProfile extends Component {
                     </div>
                     <button onClick={this.editProfile}>Submit</button>
                 </form>
-                {<Route path={`/user/profile/:id/edit`} render={(props) => <EditProfilePictures />} />}
+                {<Route path={`/user/profile/:id/edit`} render={(props) => <EditProfilePictures addPictureHandler={this.addPictureHandler} user = {this.state.user} uploadPictures={this.uploadPictures}/>} />}
                 {this.state.error && <p>{this.state.error}</p>}
             </div>
         )

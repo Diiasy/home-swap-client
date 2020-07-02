@@ -2,17 +2,16 @@ import React, { Component } from 'react';
 import service from "../utils/service";
 import uid from 'uid';
 class EditProfilePictures extends Component {
-    constructor() {
-        super();
-        this.addPicture = this.addPicture.bind(this);
+    constructor(props) {
+        super(props);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
     }
     
     state = {
-        numOfPictures: 1,
         pictures: []
     }
 
-    handleFileUpload = e => {
+    handleFileUpload(e) {
         console.log("The file to be uploaded is: ", e.target.files[0]);
         const uploadData = new FormData();
         uploadData.append("pictures", e.target.files[0]);
@@ -20,23 +19,34 @@ class EditProfilePictures extends Component {
             .then(response => {
                 console.log('response is: ', response);
                 this.setState({ pictures: response.pictures });
+                this.props.addPictureHandler(response.pictures.pop());
             })
             .catch(err => {
                 console.log("Error while uploading the file: ", err);
             });
     }
 
-    addPicture(e) {
-        e.preventDefault();
-        this.setState({ numOfPictures: this.state.numOfPictures + 1 });
+    deletePictures(pictureId){
+        let picturesCopy = [...this.state.pictures];
+        let indexN;
+        picturesCopy.forEach((picture, index) => {if(picture._id === pictureId) indexN = index})
+        picturesCopy.splice(indexN, 1);
+        this.setState({ pictures: picturesCopy })
     }
 
     render() {
+        let pictures = this.props.user.pictures;
         return (
             <div className="edit-profile-picture">
-   
-                {[...Array(this.state.numOfPictures)].map(() => <input key={uid()}onChange={(e) => this.handleFileUpload(e)} type='file' name='pictures' />)}
-                <button onClick={this.addPicture}>Add a picture</button>    
+                {
+                    pictures && pictures.map(picture => 
+                        <div>
+                            <img key={picture._id} src={picture.path} alt={picture.name}/>
+                            <button type="submit" onClick = {() => this.deletePictures(picture._id)}>Delete the picture</button>
+                        </div>
+                    )
+                }
+                <input onChange={(e) => this.handleFileUpload(e)} key={uid()} type='file' name='pictures' />  
           
                 {this.state.error && <p>{this.state.error}</p>}
             </div>
