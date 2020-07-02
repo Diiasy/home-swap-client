@@ -6,6 +6,8 @@ import ProfileCard from '../components/ProfileCard';
 import EditProfile from './EditProfile';
 import { getUser } from '../utils/auth';
 import Available from '../components/Calendar';
+import RemoveDates from '../components/RemoveDates';
+
 
 
 class Profile extends Component {
@@ -14,13 +16,15 @@ class Profile extends Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.profileUpdate = this.profileUpdate.bind(this);
         this.toggleEditCalendar = this.toggleEditCalendar.bind(this);
+        this.toggleRemoveDates = this.toggleRemoveDates.bind(this);
     }
 
     state = {
         user: null,
         form: false,
         error: null,
-        editCalendar: false
+        editCalendar: false,
+        removeDates: false
     }
 
     currentUser = getUser();
@@ -48,12 +52,19 @@ class Profile extends Component {
         });
     }
 
+    toggleRemoveDates(){
+        this.setState({
+            removeDates: !this.state.removeDates
+        });
+    }
+
     profileUpdate(response){
         let user = response;
         this.setState({
             user,
             form: false,
-            editCalendar: false
+            editCalendar: false,
+            removeDates: false
         });
     }
 
@@ -68,6 +79,8 @@ class Profile extends Component {
                     {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                     <Link to={`/user/profile/${this.props.match.params.id}/available`} onClick={this.toggleEditCalendar}>Provide Availability</Link>
                     {this.state.editCalendar && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                    <Link to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={this.toggleRemoveDates}>Remove Availability</Link>
+                    {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                 </Default>
             )
         } else {

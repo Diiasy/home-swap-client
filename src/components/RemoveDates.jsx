@@ -18,7 +18,7 @@ class Available extends React.Component {
     state = {
         availability: null,
         startDate: new Date(),
-        endDate: new Date(),
+        endDate: null,
         selecting: false
     }
 
@@ -26,7 +26,6 @@ class Available extends React.Component {
         axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}`)
         .then(response => {
             let allDates = response.data.availability;
-            // let availability = {[new Date(), subDays(new Date(), 1)]}
             let availability = allDates.map((dateTime)=> {
             let dt = new Date(dateTime);
             return Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate());
@@ -55,13 +54,19 @@ class Available extends React.Component {
 
     addAvailability(e) {
         e.preventDefault();
-        let allDateTimes = Object.values(eachDayOfInterval({ start: new Date(this.state.startDate), end: new Date(this.state.endDate) }));
+        let allDateTimes = [];
+        if (this.state.endDate === null){
+            allDateTimes.push( new Date(this.state.startDate ));
+        } else {
+            let dateRange = Object.values(eachDayOfInterval({ start: new Date(this.state.startDate), end: new Date(this.state.endDate) }));
+            dateRange.forEach(date => allDateTimes.push(date))
+        }
         let allDates = allDateTimes.map((dateTime)=> {
             let dt = new Date(dateTime);
             return Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate());
         });
         axios({
-            url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/availabilty`,
+            url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/removeavailabilty`,
             data: qs.stringify(allDates),
             withCredentials: true,
             method: "POST"
@@ -81,7 +86,7 @@ class Available extends React.Component {
             <div>
                 <DatePicker
                     inline
-                    excludeDates={this.state.availability}
+                    includeDates={this.state.availability}
                     onChange={this.handleChange}
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
