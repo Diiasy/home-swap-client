@@ -107,7 +107,7 @@ class Profile extends Component {
                 <Default>
                     <ProfileCard user = {this.state.user} />
                     <Calendar user = {this.state.user}/>
-                    <AddReview user = {this.state.user}/>
+                    <AddReview user={this.state.user} />
 
                 </Default>
             )
