@@ -3,8 +3,6 @@ import { getUser } from "../utils/auth";
 import qs from 'qs';
 import axios from 'axios';
 
-
-
 export default class AddReview extends Component {
     constructor(props) {
         super(props);
@@ -14,15 +12,12 @@ export default class AddReview extends Component {
 
     state = {
         review:  {},
-        user: {},
         error: null
     }
-
 
     currentUser = getUser();
 
     componentDidMount(){
-        debugger;
         let review = {...this.state.review};
         review[`profile_id`] = this.props.user._id;
         review[`user_id`] = this.currentUser._id;
@@ -53,7 +48,6 @@ export default class AddReview extends Component {
     }
 
     render() {
-        if(this.state.review === null ) return <h1>Loading...</h1>;
         return (
             <div className="signup">
                 <form className="container">

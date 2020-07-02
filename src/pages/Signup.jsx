@@ -14,7 +14,6 @@ class Signup extends Component {
         error: null
     }
 
-
     handleChange(e) {
         let user = {...this.state.user};
         user[e.target.name] = e.target.value;

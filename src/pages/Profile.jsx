@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import Default from '../layouts/Default';
 import axios from 'axios';
 import { Link, Route } from 'react-router-dom'; 
-import ProfileCard from '../components/ProfileCard';
-import EditProfile from './EditProfile';
 import { getUser } from '../utils/auth';
+import Default from '../layouts/Default';
+
+import EditProfile from './EditProfile';
+import ProfileCard from '../components/ProfileCard';
 import Available from '../components/AddDates';
 import RemoveDates from '../components/RemoveDates';
 import Calendar from '../components/Calendar';
 import AddReview from '../components/AddReview';
-
 
 class Profile extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class Profile extends Component {
     }
 
     state = {
-        user: {},
+        user: null,
         form: false,
         error: null,
         editCalendar: false,
@@ -106,14 +106,13 @@ class Profile extends Component {
             return(
                 <Default>
                     <ProfileCard user = {this.state.user} />
-                    <Calendar user = {this.state.user}/>
-                    <AddReview user={this.state.user} />
+                    <Calendar user = {this.state.user} />
+                    <AddReview user = {this.state.user} />
 
                 </Default>
             )
         }
     }
-
 }
 
 export default Profile;

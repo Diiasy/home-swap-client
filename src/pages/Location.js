@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 
-
 export default class Location extends Component {
-
     constructor(props){
         super(props);
         this.handleChange = this.handleChange.bind(this);
