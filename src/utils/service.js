@@ -16,7 +16,6 @@ export default {
   service,
 
   handleUpload (theFile) {
-    debugger
     console.log('file in service: ', theFile)
     return service.post(`/user/profile/${currentUser._id}/edit`, theFile)
       .then(res => res.data)

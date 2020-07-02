@@ -13,7 +13,6 @@ class EditProfilePictures extends Component {
     }
 
     handleFileUpload = e => {
-        debugger
         console.log("The file to be uploaded is: ", e.target.files[0]);
         const uploadData = new FormData();
         uploadData.append("pictures", e.target.files[0]);

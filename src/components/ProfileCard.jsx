@@ -11,7 +11,7 @@ class ProfileCard extends Component {
                 <p><strong>Description: </strong>{this.props.currentProfile.homeDescription}</p>
                 <p><strong>Owner: </strong>{this.props.currentProfile.name}</p>
                 {
-                    pictures.map(picture => <img key={picture._id} src={picture.path} alt={picture.name}/>)
+                    pictures && pictures.map(picture => <img key={picture._id} src={picture.path} alt={picture.name}/>)
                 }
             </div>
         )

@@ -19,6 +19,7 @@ class App extends Component {
           <Route exact path="/user/logout" component={Logout} />
           <Route path="/user/profile/:id" component={Profile} />
           <Route exact path="/map" component={Map} />
+
         </Switch>
       </div>
     )

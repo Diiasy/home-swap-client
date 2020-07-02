@@ -31,7 +31,6 @@ export default class Map extends Component {
             zoom: 4
         })
 
-   
 
         map.on('move', () => {
             this.setState({
@@ -40,7 +39,21 @@ export default class Map extends Component {
                 zoom: map.getZoom().toFixed(2)
             });
         })
+        // map.on('click', function(e){
+        //     debugger
+        // })
 
+        // map.on('click', 'marker',function(e){
+        //     debugger
+        // })
+
+        // map.on('click', 'circle',function(e){
+        //     debugger
+        // })
+
+        // map.on('click', 'Popup',function(e){
+        //     debugger
+        // })
         axios({
             url: `${process.env.REACT_APP_BASE_URL}/user/profile/`,
             method: "GET",
@@ -49,7 +62,7 @@ export default class Map extends Component {
         .then(response => {
             response.data.forEach((user)=> {
                 var popup = new mapboxgl.Popup()
-                    .setHTML(`<h3>${user.username}</h3>${user.homeDescription}</p>`);
+                    .setHTML(`<a href="/user/profile/${user._id}"><h3>${user.homeName}</h3></a><p>${user.homeDescription}</p>`);
 
                 var marker = new mapboxgl.Marker()
                 .setLngLat(user.geometry.coordinates)
@@ -64,7 +77,6 @@ export default class Map extends Component {
 
     render() {
         // const { lng, lat, zoom } = this.state;
-        debugger
         return (
             <Default>
                 <div>

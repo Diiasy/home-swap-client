@@ -61,27 +61,27 @@ class EditProfile extends Component {
     }
 
     render() {
-        return (
-            <div className="edit-profile">
-                <div className="container">
-                    <div className="div-group">
-                        <label htmlor="firstname">Name</label>
+        return(
+            <div>
+                <form onSubmit={this.editProfile}  className="container">
+                    <div className="form-group">
+                        <label htmlFor="firstname">Name</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="name" value={this.state.user.name} placeholder="First name" />
                     </div>
                     <div className="form-group">
-                        <label htmlor="lastname">Home name</label>
+                        <label htmlFor="lastname">Home name</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="homeName" value={this.state.user.homeName} placeholder="Home name" />
                     </div>
                     <div className="form-group">
-                        <label htmlor="email">Home description</label>
+                        <label htmlFor="email">Home description</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="homeDescription" value={this.state.user.homeDescription} placeholder="Home description" />
                     </div>
                     <div className="form-group">
-                        <label htmlor="email">City</label>
+                        <label htmlFor="email">City</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="city" value={this.state.user.city} placeholder="City" />
                     </div>
                     <button onClick={this.editProfile}>Submit</button>
-                </div>
+                </form>
                 {<Route path={`/user/profile/:id/edit`} render={(props) => <EditProfilePictures />} />}
                 {this.state.error && <p>{this.state.error}</p>}
             </div>
