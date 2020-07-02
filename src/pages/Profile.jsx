@@ -19,7 +19,7 @@ class Profile extends Component {
     }
 
     state = {
-        user: null,
+        user: {},
         form: false,
         error: null,
         editCalendar: false,
