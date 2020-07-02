@@ -5,8 +5,10 @@ import { Link, Route } from 'react-router-dom';
 import ProfileCard from '../components/ProfileCard';
 import EditProfile from './EditProfile';
 import { getUser } from '../utils/auth';
-import Available from '../components/Calendar';
+import Available from '../components/AddDates';
 import RemoveDates from '../components/RemoveDates';
+import Calendar from '../components/Calendar';
+
 
 
 
@@ -87,6 +89,9 @@ class Profile extends Component {
             return(
                 <Default>
                     <ProfileCard currentProfile = {this.props.match.params.id}/>
+                    <Calendar user={this.state.user}/>
+
+
                 </Default>
             )
         }
