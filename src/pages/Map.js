@@ -63,7 +63,7 @@ export default class Map extends Component {
 
 
     render() {
-        const { lng, lat, zoom } = this.state;
+        // const { lng, lat, zoom } = this.state;
         debugger
         return (
             <Default>

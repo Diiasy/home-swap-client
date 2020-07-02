@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Default from '../layouts/Default';
-import { getUser } from '../utils/auth';
 
 class Home extends Component {
   state = {
     message: null,
   }
 
-  
   componentDidMount() {
-    axios.get(`${process.env.REACT_APP_BASE_URL}`)
+    axios.get(`${process.env.REACT_APP_BASE_URL}`, {withCredentials: true})
     .then(response => {
       this.setState({
         message: response.data.message
