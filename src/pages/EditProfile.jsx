@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom'; 
 import axios from 'axios';
 import qs from 'qs';
+import EditProfilePictures from './EditProfilePictures'
 
 class EditProfile extends Component {
     constructor() {
@@ -14,23 +16,28 @@ class EditProfile extends Component {
         error: null
     }
 
-    componentDidMount(){
-        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}`)
+    componentDidMount() {
+        axios({
+            url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}`,
+            withCredentials: true,
+            method: 'GET'
+        })
         .then(response => {
             let user = response.data;
-            this.setState({user});
+            this.setState({ user });
         })
-        .catch (error => {
-            this.setState({error});
+        .catch(error => {
+            this.setState({ error });
         })
     }
 
     handleChange(e) {
-        let user = {...this.state.user};
+        let user = { ...this.state.user };
         user[e.target.name] = e.target.value;
-        this.setState({user});
+        this.setState({ user });
     }
 
+   
     editProfile(e) {
         e.preventDefault();
         axios({
@@ -39,13 +46,18 @@ class EditProfile extends Component {
             withCredentials: true,
             method: "POST"
         })
-        .then(response=> {
+        .then(response => {
             this.props.profileUpdate(response.data);
             this.props.history.push(`/user/profile/${response.data._id}`);
         })
         .catch(error => {
-            this.setState({error});
+            this.setState({ error });
         })
+    }
+
+    addPicture(e) {
+        e.preventDefault();
+        this.setState({ numOfPictures: this.state.numOfPictures + 1 });
     }
 
     render() {
@@ -53,24 +65,24 @@ class EditProfile extends Component {
             <div>
                 <form onSubmit={this.editProfile}  className="container">
                     <div className="form-group">
-                        <label for="firstname">Name</label>
+                        <label htmlFor="firstname">Name</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="name" value={this.state.user.name} placeholder="First name" />
                     </div>
                     <div className="form-group">
-                        <label for="lastname">Home name</label>
+                        <label htmlFor="lastname">Home name</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="homeName" value={this.state.user.homeName} placeholder="Home name" />
                     </div>
                     <div className="form-group">
-                        <label for="email">Home description</label>
+                        <label htmlFor="email">Home description</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="homeDescription" value={this.state.user.homeDescription} placeholder="Home description" />
                     </div>
                     <div className="form-group">
-                        <label for="email">City</label>
+                        <label htmlFor="email">City</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="city" value={this.state.user.city} placeholder="City" />
                     </div>
-                    
-                    <button type="submit">Submit</button>
+                    <button onClick={this.editProfile}>Submit</button>
                 </form>
+                {<Route path={`/user/profile/:id/edit`} render={(props) => <EditProfilePictures />} />}
                 {this.state.error && <p>{this.state.error}</p>}
             </div>
         )

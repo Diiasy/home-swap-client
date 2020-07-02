@@ -8,8 +8,6 @@ import Logout from './pages/Logout';
 import Profile from './pages/Profile';
 import Map from './pages/Map';
 
-
-
 class App extends Component {
   render() {
     return(
