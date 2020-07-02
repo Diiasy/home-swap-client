@@ -26,7 +26,8 @@ class Profile extends Component {
         form: false,
         error: null,
         editCalendar: false,
-        removeDates: false
+        removeDates: false,
+        calendar: true
     }
 
     currentUser = getUser();
@@ -50,7 +51,8 @@ class Profile extends Component {
 
     toggleEditCalendar(){
         this.setState({
-            editCalendar: !this.state.editCalendar
+            editCalendar: !this.state.editCalendar,
+            calendar: !this.state.calendar
         });
     }
 
@@ -88,7 +90,7 @@ class Profile extends Component {
         } else {
             return(
                 <Default>
-                    <ProfileCard currentProfile = {this.props.match.params.id}/>
+                    <ProfileCard user = {this.state.user}/>
                     <Calendar user={this.state.user}/>
 
 

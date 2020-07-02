@@ -37,9 +37,6 @@ class Available extends React.Component {
                     inline
                     includeDates={this.state.availability}
                 />
-                <button onClick={this.addAvailability} type="submit">Submit</button>
-
-
             </div>
 
         );
