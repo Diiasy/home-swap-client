@@ -9,8 +9,10 @@ class EditProfile extends Component {
         super();
         this.handleChange = this.handleChange.bind(this);
         this.editProfile = this.editProfile.bind(this);
-        // this.uploadPictures = this.uploadPictures.bind(this);
         this.addPictureHandler = this.addPictureHandler.bind(this);
+        this.deletePicturesHandler = this.deletePicturesHandler.bind(this);
+
+        
     }
 
     state = {
@@ -64,6 +66,14 @@ class EditProfile extends Component {
         })
     }
 
+    deletePicturesHandler(pictureId){
+        let userCopy = JSON.parse(JSON.stringify(this.state.user));
+        let indexN;
+        userCopy.pictures.forEach((picture, index) => {if(picture._id === pictureId) indexN = index});
+        userCopy.pictures.splice(indexN, 1);
+        this.setState({ user: userCopy })
+    }
+
     render() {
         return(
             <div>
@@ -86,7 +96,7 @@ class EditProfile extends Component {
                     </div>
                     <button onClick={this.editProfile}>Submit</button>
                 </form>
-                {<Route path={`/user/profile/:id/edit`} render={(props) => <EditProfilePictures addPictureHandler={this.addPictureHandler} user = {this.state.user} uploadPictures={this.uploadPictures}/>} />}
+                {<Route path={`/user/profile/:id/edit`} render={(props) => <EditProfilePictures addPicture={this.addPictureHandler} deletePictures={this.deletePicturesHandler} user = {this.state.user} />} />}
                 {this.state.error && <p>{this.state.error}</p>}
             </div>
         )

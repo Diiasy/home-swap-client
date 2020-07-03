@@ -19,19 +19,11 @@ class EditProfilePictures extends Component {
             .then(response => {
                 console.log('response is: ', response);
                 this.setState({ pictures: response.pictures });
-                this.props.addPictureHandler(response.pictures.pop());
+                this.props.addPicture(response.pictures.pop());
             })
             .catch(err => {
                 console.log("Error while uploading the file: ", err);
             });
-    }
-
-    deletePictures(pictureId){
-        let picturesCopy = [...this.state.pictures];
-        let indexN;
-        picturesCopy.forEach((picture, index) => {if(picture._id === pictureId) indexN = index})
-        picturesCopy.splice(indexN, 1);
-        this.setState({ pictures: picturesCopy })
     }
 
     render() {
@@ -42,7 +34,7 @@ class EditProfilePictures extends Component {
                     pictures && pictures.map(picture => 
                         <div>
                             <img key={picture._id} src={picture.path} alt={picture.name}/>
-                            <button type="submit" onClick = {() => this.deletePictures(picture._id)}>Delete the picture</button>
+                            <button type="submit" onClick = {() => this.props.deletePictures(picture._id)}>Delete the picture</button>
                         </div>
                     )
                 }

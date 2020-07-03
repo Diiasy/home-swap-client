@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import Default from '../layouts/Default';
 import axios from 'axios';
 import { Link, Route } from 'react-router-dom'; 
-import ProfileCard from '../components/ProfileCard';
-import EditProfile from './EditProfile';
 import { getUser } from '../utils/auth';
+import Default from '../layouts/Default';
+
+import EditProfile from './EditProfile';
+import ProfileCard from '../components/ProfileCard';
 import Available from '../components/AddDates';
 import RemoveDates from '../components/RemoveDates';
 import Calendar from '../components/Calendar';
 import AddReview from '../components/AddReview';
-
 
 class Profile extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class Profile extends Component {
     }
 
     state = {
-        user: {},
+        user: null,
         form: false,
         error: null,
         editCalendar: false,
@@ -96,7 +96,7 @@ class Profile extends Component {
                     <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit profile</Link>
                     <Link to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
                     <Link to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>
-                    { this.state.calendar && <Calendar user = {this.state.user} /> }
+                    {this.state.calendar && <Calendar user = {this.state.user} /> }
                     {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                     {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                     {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
@@ -106,14 +106,13 @@ class Profile extends Component {
             return(
                 <Default>
                     <ProfileCard user = {this.state.user} />
-                    <Calendar user = {this.state.user}/>
-                    <AddReview user={this.state.user} />
+                    <Calendar user = {this.state.user} />
+                    <AddReview user = {this.state.user} />
 
                 </Default>
             )
         }
     }
-
 }
 
 export default Profile;

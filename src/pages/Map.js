@@ -4,10 +4,8 @@ import './map.css';
 import axios from 'axios';
 import Default from '../layouts/Default';
 
-
 // mapboxgl.accessToken = `${process.env.MAPBOX_ACCESS_TOKEN}`;
 mapboxgl.accessToken = `pk.eyJ1IjoibmllbmtlMDkwNSIsImEiOiJja2MwYWludnAxaHM2MnRsZ3c4b3l0dHNqIn0.FIQX7sNolXaZEVPAUxOIrg`;
-
 
 export default class Map extends Component {
     constructor(props) {
@@ -19,7 +17,6 @@ export default class Map extends Component {
             users: []
         };
         this.mapRef = React.createRef();
-
     }
 
     componentDidMount() {
@@ -30,7 +27,6 @@ export default class Map extends Component {
             center: [5, 50], // starting position as [lng, lat]
             zoom: 4
         })
-
 
         map.on('move', () => {
             this.setState({
@@ -73,7 +69,6 @@ export default class Map extends Component {
             console.log(this.state.users);
         })
     }
-
 
     render() {
         // const { lng, lat, zoom } = this.state;

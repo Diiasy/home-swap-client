@@ -4,8 +4,6 @@ import eachDayOfInterval from 'date-fns/eachDayOfInterval';
 import axios from 'axios';
 import qs from 'qs';
 import "react-datepicker/dist/react-datepicker.css";
-
- 
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
  
 class Available extends React.Component {
@@ -27,8 +25,8 @@ class Available extends React.Component {
         .then(response => {
             let allDates = response.data.availability;
             let availability = allDates.map((dateTime)=> {
-            let dt = new Date(dateTime);
-            return Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate());
+                let dt = new Date(dateTime);
+                return Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate());
             });
             this.setState({availability});
         })
@@ -50,7 +48,6 @@ class Available extends React.Component {
             });
         }
     }
-
 
     addAvailability(e) {
         e.preventDefault();
@@ -78,7 +75,6 @@ class Available extends React.Component {
         .catch(error => {
             this.setState({error});
         });
-
     }
  
     render() {
@@ -92,12 +88,9 @@ class Available extends React.Component {
                     endDate={this.state.endDate}
                 />
                 <button onClick={this.addAvailability} type="submit">Submit</button>
-
-
             </div>
-
         );
     }
-    }
+}
 
 export default Available;

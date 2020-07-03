@@ -3,8 +3,6 @@ import { getUser } from "../utils/auth";
 import qs from 'qs';
 import axios from 'axios';
 
-
-
 export default class AddReview extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +14,6 @@ export default class AddReview extends Component {
         review:  {},
         error: null
     }
-
 
     currentUser = getUser();
 
