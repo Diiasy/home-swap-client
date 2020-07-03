@@ -19,7 +19,7 @@ export default class AddReview extends Component {
 
     componentDidMount(){
         let review = {...this.state.review};
-        review[`profile_id`] = this.props.user._id;
+        review[`profile_id`] = this.props.userId;
         review[`user_id`] = this.currentUser._id;
         this.setState({review});
     }
@@ -32,6 +32,7 @@ export default class AddReview extends Component {
 
     addReview(e) {
         e.preventDefault();
+        document.getElementById("review").reset();
         axios({
             url: `${process.env.REACT_APP_BASE_URL}/user/review/create`,
             data: qs.stringify(this.state.review),
@@ -39,8 +40,8 @@ export default class AddReview extends Component {
             method: "POST"
         })
         .then(response => {
-            this.props.profileUpdate(response.data);
-            this.props.history.push(`/user/profile/${response.data._id}`);
+            this.props.reviewUpdate(response.data);
+            this.props.history.push(`/user/profile/${this.props._id}/reviews`);
         })
         .catch(error => {
             this.setState({ error });
@@ -50,10 +51,10 @@ export default class AddReview extends Component {
     render() {
         return (
             <div className="signup">
-                <form className="container">
+                <form className="container"  id="review">
                     <div className="form-group">
                         <label for="content">Review</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="content" placeholder="content" />
+                        <input className="form-control" type="text" onChange={this.handleChange} name="content" placeholder="content"/>
                     </div>
                     <div className="form-group">
                         <label for="score">Score</label>
@@ -66,3 +67,4 @@ export default class AddReview extends Component {
         )
     }
 }
+
