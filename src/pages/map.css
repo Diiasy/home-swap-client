@@ -1,9 +1,4 @@
-
 .mapContainer {
-  /* position: absolute;
-  top: 0;
-  left: 0; */
-  height: 75vh;
-  width: 50%
-
+  display: flex;
+  flex-wrap: wrap;
 }

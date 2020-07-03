@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import Default from '../layouts/Default';
 
 class Profile extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     state = {
         users: null

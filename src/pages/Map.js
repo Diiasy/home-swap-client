@@ -3,6 +3,10 @@ import mapboxgl from 'mapbox-gl';
 import './map.css';
 import axios from 'axios';
 import Default from '../layouts/Default';
+import {Route} from "react-router-dom";
+import MemberCard from '../components/MemberCard';
+import MapCard from '../components/MapCard.jsx';
+
 
 // mapboxgl.accessToken = `${process.env.MAPBOX_ACCESS_TOKEN}`;
 mapboxgl.accessToken = `pk.eyJ1IjoibmllbmtlMDkwNSIsImEiOiJja2MwYWludnAxaHM2MnRsZ3c4b3l0dHNqIn0.FIQX7sNolXaZEVPAUxOIrg`;
@@ -10,13 +14,17 @@ mapboxgl.accessToken = `pk.eyJ1IjoibmllbmtlMDkwNSIsImEiOiJja2MwYWludnAxaHM2MnRsZ
 export default class Map extends Component {
     constructor(props) {
         super(props);
-            this.state = {
+        this.setNewUser = this.setNewUser.bind(this);
+
+        this.state = {
             // lng: -21,
             // lat: 64,
             // zoom: 2,
-            users: []
+            users: [],
+            user: null
         };
         this.mapRef = React.createRef();
+        
     }
 
     componentDidMount() {
@@ -35,21 +43,8 @@ export default class Map extends Component {
                 zoom: map.getZoom().toFixed(2)
             });
         })
-        // map.on('click', function(e){
-        //     debugger
-        // })
-
-        // map.on('click', 'marker',function(e){
-        //     debugger
-        // })
-
-        // map.on('click', 'circle',function(e){
-        //     debugger
-        // })
-
-        // map.on('click', 'Popup',function(e){
-        //     debugger
-        // })
+        const fixHistory = this.props.history;
+        const fixThis =this;
         axios({
             url: `${process.env.REACT_APP_BASE_URL}/user/profile/`,
             method: "GET",
@@ -57,28 +52,38 @@ export default class Map extends Component {
         })
         .then(response => {
             response.data.forEach((user)=> {
-                var popup = new mapboxgl.Popup()
-                    .setHTML(`<a href="/user/profile/${user._id}"><h3>${user.homeName}</h3></a><p>${user.homeDescription}</p>`);
-
-                var marker = new mapboxgl.Marker()
+                var el = document.createElement('div');
+                el.className = 'marker';
+                el.style.backgroundImage =
+                'url(https://placekitten.com/g/' +
+                [40, 40].join('/') +
+                '/)';
+                el.style.width = 40 + 'px';
+                el.style.height = 40 + 'px';
+                el.addEventListener('click', function() {
+                    fixThis.setState({user})
+                    fixHistory.push(`/map/member/${user._id}`)
+                });
+        
+                new mapboxgl.Marker(el)
                 .setLngLat(user.geometry.coordinates)
-                .setPopup(popup)
-                .addTo(map);
+                .addTo(map); 
             })
             this.setState({users: response.data});
-            console.log(this.state.users);
         })
     }
 
+    setNewUser(response){
+        let user = response;
+        this.setState({user})
+    }
+
     render() {
-        // const { lng, lat, zoom } = this.state;
         return (
             <Default>
-                <div>
-                    {/* <div className="sidebarStyle">
-                        <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
-                    </div> */}
-                    <div ref={this.mapRef} className='mapContainer' />
+                <div className="mapContainer">
+                    <MapCard {...this.props} ref={this.mapRef} />
+                    <Route exact path="/map/member/:userId" render={(props)=> <MemberCard user={this.state.user}/>} /> 
                 </div>
             </Default>
         )
