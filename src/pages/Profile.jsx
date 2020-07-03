@@ -3,13 +3,12 @@ import axios from 'axios';
 import { Link, Route } from 'react-router-dom'; 
 import { getUser } from '../utils/auth';
 import Default from '../layouts/Default';
-
-import EditProfile from './EditProfile';
+import EditProfile from '../components/EditProfile';
 import ProfileCard from '../components/ProfileCard';
 import Available from '../components/AddDates';
 import RemoveDates from '../components/RemoveDates';
 import Calendar from '../components/Calendar';
-import AddReview from '../components/AddReview';
+import Reviews from '../components/Reviews';
 
 class Profile extends Component {
     constructor(props) {
@@ -100,6 +99,7 @@ class Profile extends Component {
                     {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                     {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                     {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                    <Reviews user={this.state.user}  />
                 </Default>
             )
         } else {
@@ -107,8 +107,7 @@ class Profile extends Component {
                 <Default>
                     <ProfileCard user = {this.state.user} />
                     <Calendar user = {this.state.user} />
-                    <AddReview user = {this.state.user} />
-
+                    <Reviews user={this.state.user}  />
                 </Default>
             )
         }
