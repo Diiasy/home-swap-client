@@ -36,41 +36,27 @@ export default class Reviews extends Component {
 
     render() {
         if(this.state.reviews === null ) return <h1>No reviews for this user.</h1>;
-        if (this.currentUser._id === this.props.user._id) {
-            debugger
-            return(
-                <div>
-                    <h4>Reviews</h4>
-                    {
-                        this.state.reviews.map((review)=>
-                            <div className="d-flex justify-content-center">
-                                <div className="col-9 text-wrap list-text">
-                                    <p className="mb-2">{review.content}</p>
-                                    <h6><span className="font-weight-bold">Reviewed by: </span>{review.reviewer.name} <span className="font-weight-bold">Score: </span>{review.score}</h6>
-                                </div>
-                            </div>
-                        )
-                    }
-                </div>
-            )
-        } else {
-            return(
-                <div>
-                    <h4>Reviews</h4>
-                    {
-                        this.state.reviews.map((review)=>
-                            <div className="d-flex justify-content-center">
-                                <div className="col-9 text-wrap list-text">
-                                    <p className="mb-2">{review.content}</p>
-                                    <h6><span className="font-weight-bold">Reviewed by: </span>{review.reviewer.name} <span className="font-weight-bold">Score: </span>{review.score}</h6>
-                                </div>
-                            </div>
-                        )
-                    }
-                    <AddReview userId = {this.props.user._id} reviewUpdate={this.reviewUpdate} />
-                </div>
-            )
-                    
+        let addReview;
+        if (this.currentUser._id !== this.props.user._id) {
+            addReview = <AddReview userId = {this.props.user._id} reviewUpdate={this.reviewUpdate} />
+            
         }
+            return(
+                <div>
+                    <h4>Reviews</h4>
+                    {
+                        this.state.reviews.map((review)=>
+                            <div className="d-flex justify-content-center">
+                                <div className="col-9 text-wrap list-text">
+                                    <p className="mb-2">{review.content}</p>
+                                    <h6><span className="font-weight-bold">Reviewed by: </span>{review.reviewer.name} <span className="font-weight-bold">Score: </span>{review.score}</h6>
+                                </div>
+                            </div>
+                        )
+                    }
+                    {addReview}
+
+                </div>
+            )
     }
 }

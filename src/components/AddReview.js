@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { getUser } from "../utils/auth";
 import qs from 'qs';
 import axios from 'axios';
 
@@ -15,12 +14,9 @@ export default class AddReview extends Component {
         error: null
     }
 
-    currentUser = getUser();
-
     componentDidMount(){
         let review = {...this.state.review};
         review[`profile_id`] = this.props.userId;
-        review[`user_id`] = this.currentUser._id;
         this.setState({review});
     }
 
