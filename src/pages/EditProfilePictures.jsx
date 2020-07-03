@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import service from "../utils/service";
 import uid from 'uid';
+
 class EditProfilePictures extends Component {
     constructor(props) {
         super(props);

@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 import Default from '../layouts/Default';
 
 class Profile extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = {
         users: null
     }
@@ -23,7 +19,6 @@ class Profile extends Component {
         });
     }
 
-
     render() {
         if(this.state.users === null) return <h1>Loading...</h1>;
         return(
@@ -37,7 +32,6 @@ class Profile extends Component {
                 }
             </Default>
         )
-        
     }
 }
 
