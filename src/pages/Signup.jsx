@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Default from '../layouts/Default';
-import { signup, getUser } from "../utils/auth";
+import { signup } from "../utils/auth";
 
 class Signup extends Component {
     constructor(props) {
@@ -24,11 +24,10 @@ class Signup extends Component {
         e.preventDefault();
         signup(this.state.user)
         .then(() => {
-            let userId = getUser();
-            this.props.history.push(`/user/profile/${userId._id}`);
+            this.props.history.push(`/user/login`);
         })
-        .catch(error => {
-            this.setState({error});
+        .catch(err => {
+            this.setState({error: err.response.data.errorMessage});
         });
     }
 
@@ -65,6 +64,7 @@ class Signup extends Component {
                         <button onClick={this.signUpUser} type="submit">Submit</button>
                     </form>
                 </div>
+                {this.state.error && <p>{this.state.error}</p>}
             </Default>
         )
     }

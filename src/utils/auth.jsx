@@ -47,3 +47,9 @@ export const logout = ()=>{
 export const removeUser = (user)=> {
     window.localStorage.removeItem("user");
 }
+
+export const userIsLoggedIn = (user)=> {
+    let isLoggedIn;
+    (window.localStorage.getItem("user")) ? isLoggedIn = true : isLoggedIn = false;
+    return isLoggedIn;
+}

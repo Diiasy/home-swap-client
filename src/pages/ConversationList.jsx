@@ -4,6 +4,7 @@ import uid from "uid";
 import { Link, Route } from 'react-router-dom';
 import Default from '../layouts/Default';
 import Conversation from './Conversation';
+import '../layouts/loading.css'
 
 class ConversationList extends Component {
   state = {
@@ -23,11 +24,7 @@ class ConversationList extends Component {
   }
 
   render() {
-    if(this.state.conversations.length === 0) return <h1>Loading...</h1>;
-    // let participants = [];
-    // this.state.conversations.map(conv => {
-    //     (conv.participants[0].username === req.session.user.username) ? participants.push(conv.participants[1]) : participants.push(conv.participants[0])
-    // })
+    if(this.state.conversations.length === 0) return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>;
     return(
       <div className="conversationlist">
         <Default>
@@ -39,10 +36,9 @@ class ConversationList extends Component {
                   <p>{conversation[1].username}</p>
               </Link>
               </div>
-          )
+            )
           }
           <Route path="/conversations/:conversationId" render={props=> <Conversation key={uid()} {...props}/>} />
-          {/* <Route exact path="/conversations/:conversationId" component={Conversation} /> */}
         </Default>
       </div>
     )

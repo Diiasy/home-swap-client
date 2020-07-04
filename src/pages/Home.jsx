@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Default from '../layouts/Default';
+import '../layouts/loading.css'
 
 class Home extends Component {
   state = {
@@ -23,7 +24,7 @@ class Home extends Component {
           {
             this.state.message ? 
             <h1>{this.state.message}</h1> :
-            <h1>Loading...</h1>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
           }
         </Default>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Default from '../layouts/Default';
-import { login } from "../utils/auth";
+import { login, getUser } from "../utils/auth";
 
 class Login extends Component {
     constructor(props) {
@@ -27,10 +27,11 @@ class Login extends Component {
         e.preventDefault();
         login(this.state.user)
         .then(() => {
-            this.props.history.push(`/`)
+            let userId = getUser();
+            this.props.history.push(`/user/profile/${userId._id}`);
         })
         .catch(err => {
-            console.log(err)
+            this.setState({error: err.response.data.errorMessage})
         })
     }
 
@@ -51,6 +52,7 @@ class Login extends Component {
                         <button onClick={this.loginUser} type="submit">Submit</button>
                     </form>
                 </div>
+                {this.state.error && <p>{this.state.error}</p>}
             </Default>
         )
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
 import Default from '../layouts/Default';
+import '../layouts/loading.css'
 
 class List extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class List extends Component {
     }
 
     render() {
-        if(this.state.users === null) return <h1>Loading...</h1>;
+        if(this.state.users === null) return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>;
         return(
             <Default>
                 <div className="container">
