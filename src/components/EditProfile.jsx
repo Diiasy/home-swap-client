@@ -11,8 +11,6 @@ class EditProfile extends Component {
         this.editProfile = this.editProfile.bind(this);
         this.addPictureHandler = this.addPictureHandler.bind(this);
         this.deletePicturesHandler = this.deletePicturesHandler.bind(this);
-
-        
     }
 
     state = {
@@ -67,11 +65,21 @@ class EditProfile extends Component {
     }
 
     deletePicturesHandler(pictureId){
-        let userCopy = JSON.parse(JSON.stringify(this.state.user));
-        let indexN;
-        userCopy.pictures.forEach((picture, index) => {if(picture._id === pictureId) indexN = index});
-        userCopy.pictures.splice(indexN, 1);
-        this.setState({ user: userCopy })
+        axios({
+            url: `${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/edit/delete/${pictureId}`,
+            withCredentials: true,
+            method: 'GET'
+        })
+        .then(response => {
+            let userCopy = JSON.parse(JSON.stringify(this.state.user));
+            let indexN;
+            userCopy.pictures.forEach((picture, index) => {if(picture._id === pictureId) indexN = index});
+            userCopy.pictures.splice(indexN, 1);
+            this.setState({ user: userCopy })
+        })
+        .catch(error => {
+            this.setState({ error });
+        })
     }
 
     render() {
@@ -94,10 +102,10 @@ class EditProfile extends Component {
                         <label htmlFor="email">City</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="city" value={this.state.user.city} placeholder="City" />
                     </div>
-                    <button onClick={this.editProfile}>Submit</button>
                 </form>
-                {<Route path={`/user/profile/:id/edit`} render={(props) => <EditProfilePictures addPicture={this.addPictureHandler} deletePictures={this.deletePicturesHandler} user = {this.state.user} />} />}
+                {<Route path={`/user/profile/:id/edit`} render={() => <EditProfilePictures addPicture={this.addPictureHandler} deletePictures={this.deletePicturesHandler} user = {this.state.user} />} />}
                 {this.state.error && <p>{this.state.error}</p>}
+                <button onClick={this.editProfile}>Submit</button>
             </div>
         )
     }

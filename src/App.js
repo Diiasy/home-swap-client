@@ -8,6 +8,8 @@ import Logout from './pages/Logout';
 import List from './pages/List';
 import Profile from './pages/Profile';
 import Map from './pages/Map';
+import ConversationList from './pages/ConversationList';
+// import Conversation from './pages/Conversation';
 
 class App extends Component {
   render() {
@@ -21,6 +23,8 @@ class App extends Component {
           <Route exact path="/user/profile" component={List} />
           <Route path="/user/profile/:id" component={Profile} />
           <Route path="/map" component={Map} />
+          <Route path="/conversations" component={ConversationList} />
+          {/* <Route path="/conversations/:conversationId" component={Conversation} /> */}
         </Switch>
       </div>
     )

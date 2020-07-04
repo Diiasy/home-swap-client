@@ -13,6 +13,7 @@ function Navbar() {
           <Link className="navbar-brand" to='/map'>Map</Link>
           <Link className="navbar-brand" to='/user/profile'>List</Link>
           <Link className="navbar-brand" to={`/user/profile/${user._id}`}>Welcome {user.username}</Link>
+          <Link className="navbar-brand" to='/conversations'>Conversations</Link>
           <Link className="navbar-brand" to='/user/logout'>Logout</Link>
         </div>
       </nav>

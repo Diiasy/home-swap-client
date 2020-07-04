@@ -9,6 +9,7 @@ import Available from '../components/AddDates';
 import RemoveDates from '../components/RemoveDates';
 import Calendar from '../components/Calendar';
 import Reviews from '../components/Reviews';
+import SendMessageBtn from '../components/SendMessageBtn';
 
 class Profile extends Component {
     constructor(props) {
@@ -106,6 +107,8 @@ class Profile extends Component {
             return(
                 <Default>
                     <ProfileCard user = {this.state.user} />
+                    {/* {render=(props) => <SendMessageBtn {...props} recipientId = {this.props.match.params.id} />} */}
+                    <SendMessageBtn {...this.props} />
                     <Calendar user = {this.state.user} />
                     <Reviews user={this.state.user}  />
                 </Default>
