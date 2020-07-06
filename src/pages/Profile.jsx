@@ -10,7 +10,7 @@ import RemoveDates from '../components/RemoveDates';
 import Calendar from '../components/Calendar';
 import Reviews from '../components/Reviews';
 import SendMessageBtn from '../components/SendMessageBtn';
-import '../layouts/loading.css'
+import '../layouts/loading.css';
 
 class Profile extends Component {
     constructor(props) {
@@ -89,7 +89,7 @@ class Profile extends Component {
     }
 
     render() {
-        if(this.state.user === null) return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>;
+        if(this.state.user === null) return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
         if (this.currentUser._id === this.props.match.params.id) {
             return(
                 <Default>
