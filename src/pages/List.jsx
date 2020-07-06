@@ -16,7 +16,7 @@ class List extends Component {
     }
 
     componentDidMount(){
-        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile`, {withCredentials: true})
+        axios.get(`${process.env.REACT_APP_BASE_URL}/user/list`, {withCredentials: true})
         .then(response => {
             this.setState({users: response.data, filteredUsers: response.data});
         })
@@ -26,7 +26,6 @@ class List extends Component {
     }
 
     searchProperties(e){
-        debugger
         let searchTerm = e.target.value;
         if (searchTerm.length === 0){
             return this.setState({filteredUsers: this.state.users})
@@ -43,10 +42,10 @@ class List extends Component {
                 this.setState({filteredUsers: response.data});
             }
         });
-    }
+    } 
 
     render() {
-        if(this.state.users === null) return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>;
+        if(this.state.users === null) return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
         return(
             <Default>
                 <div className="container">
@@ -62,7 +61,7 @@ class List extends Component {
                     <div className="row">
                     {
                         this.state.filteredUsers.map(user =>
-                            <div class="col">
+                            <div key={user._id} className="col">
                                 <Link to={`/user/profile/${user._id}`}>
                                     <p>{user.homeName}</p>
                                 </Link>

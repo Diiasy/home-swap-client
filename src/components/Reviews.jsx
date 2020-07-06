@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import AddReview from '../components/AddReview';
 import { getUser } from '../utils/auth';
+import uid from 'uid';
 
 export default class Reviews extends Component {
     constructor() {
@@ -46,7 +47,7 @@ export default class Reviews extends Component {
                     <h4>Reviews</h4>
                     {
                         this.state.reviews.map((review)=>
-                            <div className="d-flex justify-content-center">
+                            <div key={uid()} className="d-flex justify-content-center">
                                 <div className="col-9 text-wrap list-text">
                                     <p className="mb-2">{review.content}</p>
                                     <h6><span className="font-weight-bold">Reviewed by: </span>{review.reviewer.name} <span className="font-weight-bold">Score: </span>{review.score}</h6>

@@ -15,6 +15,7 @@ import '../layouts/loading.css'
 class Profile extends Component {
     constructor(props) {
         super(props);
+        this.fetchUser = this.fetchUser.bind(this);
         this.toggleForms = this.toggleForms.bind(this);
         this.profileUpdate = this.profileUpdate.bind(this);
     }
@@ -31,6 +32,16 @@ class Profile extends Component {
     currentUser = getUser();
 
     componentDidMount(){
+        this.fetchUser();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.fetchUser();
+        }
+    }
+
+    fetchUser(){
         axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}`, {withCredentials: true})
         .then(response => {
             let user = response.data;
@@ -89,7 +100,7 @@ class Profile extends Component {
     }
 
     render() {
-        if(this.state.user === null) return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>;
+        if(this.state.user === null) return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
         if (this.currentUser._id === this.props.match.params.id) {
             return(
                 <Default>

@@ -20,7 +20,7 @@ export default class Location extends Component {
 
     returnLocation(e){
         e.preventDefault();
-        axios.get(`${process.env.REACT_APP_BASE_URL}/locations/geocoding/${this.state.location}`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/locations/geocoding/${this.state.location}`, {withCredentials: true})
             .then((response)=> {
                 console.log(response.data.message);
             })

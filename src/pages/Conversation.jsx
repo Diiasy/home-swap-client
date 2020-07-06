@@ -35,7 +35,9 @@ class Conversation extends Component {
     getTime(dateString){
         let date = new Date(dateString);
         let hours = date.getHours();
+        (hours < 10) ? hours = `0${hours}` : hours = `${hours}`;
         let minutes = date.getMinutes();
+        (minutes < 10) ? minutes = `0${minutes}` : minutes = `${minutes}`;
         let time = `${hours}:${minutes}`;
         return time;
     }
@@ -55,8 +57,8 @@ class Conversation extends Component {
                 this.state.messages && this.state.messages.map(message => 
                     <div className = 'message'>
                         <p>{message.from.username}</p>
-                        <p>{this.transformDate(message.date)}</p>
-                        <p>{this.getTime(message.date)}</p>
+                        <p>{this.transformDate(message.createdAt)}</p>
+                        <p>{this.getTime(message.createdAt)}</p>
                         <p>{message.message}</p>
                     </div>
                 )

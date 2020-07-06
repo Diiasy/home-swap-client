@@ -49,13 +49,13 @@ export default class AddReview extends Component {
             <div className="signup">
                 <form className="container"  id="review">
                     <div className="form-group">
-                        <label for="content">Review</label>
+                        <label htmlFor="content">Review</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="content" placeholder="content"/>
                     </div>
                     <div className="form-group">
-                        <label for="score">Score</label>
-                        <input type="range" name="score" class="form-control-range range" min="1" max="10" onChange={this.handleChange} />
-                        <output class="bubble"></output>                            
+                        <label htmlFor="score">Score</label>
+                        <input type="range" name="score" className="form-control-range range" min="1" max="10" onChange={this.handleChange} />
+                        <output className="bubble"></output>                            
                     </div>
                     <button onClick={this.addReview} type="submit">Submit</button>
                 </form>
