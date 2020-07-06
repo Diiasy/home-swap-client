@@ -45,7 +45,7 @@ export default class Map extends Component {
         const fixHistory = this.props.history;
         const fixThis =this;
         axios({
-            url: `${process.env.REACT_APP_BASE_URL}/user/profile/`,
+            url: `${process.env.REACT_APP_BASE_URL}/user/list`,
             method: "GET",
             withCredentials: true
         })

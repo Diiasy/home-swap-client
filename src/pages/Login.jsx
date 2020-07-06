@@ -43,11 +43,11 @@ class Login extends Component {
                         <div id="form">
                             <h2 className="mb-4">Login</h2>
                             <div className="form-group">
-                                <label for="username">Username</label>
+                                <label htmlFor="username">Username</label>
                                 <input className="form-control" type="text" onChange={this.handleChange} name="username" placeholder="Username" />
                             </div>
                             <div className="form-group">
-                                <label for="password">Password</label>
+                                <label htmlFor="password">Password</label>
                                 <input className="form-control" type="password" onChange={this.handleChange} name="password" placeholder="Password" />
                             </div>
                             

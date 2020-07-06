@@ -24,9 +24,12 @@ class Conversation extends Component {
 
     render() {
         return(
-        <div className="send-message">
-            <button onClick={this.sendMessage}>Send message</button>
-        </div>
+            <div className="row">
+                <div className="col my-2 d-flex justify-content-end">
+                    <button onClick={this.sendMessage}>Send message</button>
+                </div>
+            </div>
+
         )
     }
     }

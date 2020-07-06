@@ -19,7 +19,7 @@ class List extends Component {
     }
 
     componentDidMount(){
-        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile`, {withCredentials: true})
+        axios.get(`${process.env.REACT_APP_BASE_URL}/user/list`, {withCredentials: true})
         .then(response => {
             this.setState({users: response.data, filteredUsers: response.data});
         })
@@ -46,7 +46,7 @@ class List extends Component {
                 this.setState({filteredUsers: response.data});
             }
         });
-    }
+    } 
 
     render() {
         if(this.state.users === null) return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>;
@@ -69,7 +69,7 @@ class List extends Component {
                         {
                             this.state.filteredUsers.map(user =>
                                 user.pictures.length > 0 &&
-                                <div className="col-md-10 col-lg-4 my-2 d-flex justify-content-around">
+                                <div key={user._id} className="col-md-10 col-lg-4 my-2 d-flex justify-content-around">
                                     <Link to={`/user/profile/${user._id}`} className="user-card">
                                         <div className="card">
                                             <h5 className="card-title p-2">{user.homeName}</h5>

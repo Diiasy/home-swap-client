@@ -24,13 +24,13 @@ class ConversationList extends Component {
   }
 
   render() {
-    if(this.state.conversations.length === 0) return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>;
+    if(this.state.conversations.length === 0) return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
     return(
       <div className="conversationlist">
         <Default>
           {
             this.state.conversations && this.state.conversations.map(conversation => 
-              <div>
+              <div key={conversation[1]._id}>
               
               <Link to={`/conversations/${conversation[0]}`}>
                   <p>{conversation[1].username}</p>

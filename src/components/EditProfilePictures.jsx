@@ -30,16 +30,16 @@ class EditProfilePictures extends Component {
     render() {
         let pictures = this.props.user.pictures;
         return (
-            <div className="edit-profile-picture">
+            <div className="row">
                 {
                     pictures && pictures.map(picture => 
                         <div>
-                            <img key={picture._id} src={picture.path} alt={picture.name}/>
-                            <button type="submit" onClick = {() => this.props.deletePictures(picture._id)}>Delete the picture</button>
+                            <img key={picture._id} src={picture.path} alt={picture.name} className="col-8 m-2"/>
+                            <button type="submit" onClick = {() => this.props.deletePictures(picture._id)}>Delete Picture</button>
                         </div>
                     )
                 }
-                <input onChange={(e) => this.handleFileUpload(e)} key={uid()} type='file' name='pictures' />  
+                <input onChange={(e) => this.handleFileUpload(e)} key={uid()} type='file' name='pictures' className="form-control-file" />  
           
                 {this.state.error && <p>{this.state.error}</p>}
             </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import qs from 'qs';
 import axios from 'axios';
+// import InputRange from 'react-input-range';
 
 export default class AddReview extends Component {
     constructor(props) {
@@ -46,16 +47,20 @@ export default class AddReview extends Component {
 
     render() {
         return (
-            <div className="signup">
-                <form className="container"  id="review">
+            <div className="row d-flex justify-content-center text-center m-3">
+                <form className="col-10 p-2" id="review">
                     <div className="form-group">
-                        <label for="content">Review</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="content" placeholder="content"/>
+                        <label htmlFor="review">Review</label>
+                        <input className="form-control" type="text" onChange={this.handleChange} name="content" placeholder="Leave a review"/>
                     </div>
                     <div className="form-group">
-                        <label for="score">Score</label>
-                        <input type="range" name="score" class="form-control-range range" min="1" max="10" onChange={this.handleChange} />
-                        <output class="bubble"></output>                            
+                        <label htmlFor="score">Score</label>
+                        <input type="range" name="score" className="form-control-range range" min="1" max="10" onChange={this.handleChange} />
+                        {/* <InputRange
+                            maxValue={10}
+                            minValue={0}
+                            score={this.state.score}
+                            onChange={ this.handleChange} /> */}
                     </div>
                     <button onClick={this.addReview} type="submit">Submit</button>
                 </form>
@@ -63,4 +68,3 @@ export default class AddReview extends Component {
         )
     }
 }
-

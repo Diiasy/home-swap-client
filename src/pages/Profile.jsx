@@ -15,6 +15,7 @@ import '../layouts/loading.css';
 class Profile extends Component {
     constructor(props) {
         super(props);
+        this.fetchUser = this.fetchUser.bind(this);
         this.toggleForms = this.toggleForms.bind(this);
         this.profileUpdate = this.profileUpdate.bind(this);
     }
@@ -31,6 +32,16 @@ class Profile extends Component {
     currentUser = getUser();
 
     componentDidMount(){
+        this.fetchUser();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.fetchUser();
+        }
+    }
+
+    fetchUser(){
         axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}`, {withCredentials: true})
         .then(response => {
             let user = response.data;
@@ -78,9 +89,8 @@ class Profile extends Component {
     }
 
     profileUpdate(response){
-        let user = response;
+        this.fetchUser();        
         this.setState({
-            user,
             form: false,
             addDates: false,
             removeDates: false,
@@ -93,24 +103,54 @@ class Profile extends Component {
         if (this.currentUser._id === this.props.match.params.id) {
             return(
                 <Default>
-                    <ProfileCard user = {this.state.user}/>
-                    <Link to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit profile</Link>
-                    <Link to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
-                    <Link to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>
-                    {this.state.calendar && <Calendar user = {this.state.user} /> }
-                    {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                    {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                    {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                    <Reviews user={this.state.user}  />
+                    <div className="container-fluid">
+                        <ProfileCard user = {this.state.user}/>
+                        <div className="row justify-content-center m-3">
+                            <div className="col-md-10 my-2">
+                                <h4>Edit Profile & Availability</h4>
+                            </div>
+
+                            <div className="col-md-10 col-lg-6 my-2 d-flex justify-content-between">
+                                {this.state.calendar && <Calendar user = {this.state.user} /> }
+                                {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                                {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                                {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                                <div className="d-flex flex-column col-4">
+                                    <Link className="button" to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit Profile</Link>
+                                    <Link className="button" to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
+                                    <Link className="button" to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="row d-flex justify-content-center m-3">
+                            <div className="col-md-10 my-2">
+                                <Reviews user={this.state.user}  />
+                            </div>
+                        </div>
+                    </div>
                 </Default>
             )
         } else {
             return(
                 <Default>
-                    <ProfileCard user = {this.state.user} />
-                    <SendMessageBtn {...this.props} />
-                    <Calendar user = {this.state.user} />
-                    <Reviews user={this.state.user}  />
+                    <div className="container-fluid">
+                            <SendMessageBtn {...this.props} className="button" />
+                            <ProfileCard user = {this.state.user} />
+                            <div className="row d-flex justify-content-center m-3">
+                                <div className="col-md-10 my-2">
+                                    <h4>Availability of Property</h4>
+                                </div>
+                                <div className="col-md-10 my-2 d-flex justify-content-center">
+                                    <Calendar user = {this.state.user} />
+                                </div>
+                            </div>
+                            <div className="row d-flex justify-content-center m-3">
+                                <div className="col-md-10 my-2">
+                                    <Reviews user={this.state.user}  />
+                                </div>
+                            </div>
+                    </div>
                 </Default>
             )
         }

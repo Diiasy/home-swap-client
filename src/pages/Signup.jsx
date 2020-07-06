@@ -39,23 +39,23 @@ class Signup extends Component {
                         <form id="form">
                             <h2 className="mb-4">Signup</h2>
                             <div className="form-group">
-                                <label for="username">Username</label>
+                                <label htmlFor="username">Username</label>
                                 <input className="form-control" type="text" onChange={this.handleChange} name="username" placeholder="Username" />
                             </div>
                             <div className="form-group">
-                                <label for="firstname">Name</label>
+                                <label htmlFor="firstname">Name</label>
                                 <input className="form-control" type="text" onChange={this.handleChange} name="name" placeholder="Name" />
                             </div>
                             <div className="form-group">
-                                <label for="email">Email</label>
+                                <label htmlFor="email">Email</label>
                                 <input className="form-control" type="text" onChange={this.handleChange} name="email" placeholder="Email" />
                             </div>
                             <div className="form-group">
-                                <label for="email">City</label>
+                                <label htmlFor="email">City</label>
                                 <input className="form-control" type="text" onChange={this.handleChange} name="city" placeholder="City" />
                             </div>
                             <div className="form-group">
-                                <label for="password">Password</label>
+                                <label htmlFor="password">Password</label>
                                 <input className="form-control" type="password" onChange={this.handleChange} name="password" placeholder="Password" />
                             </div>
                             <div className="form-group">

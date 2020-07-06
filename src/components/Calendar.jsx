@@ -10,7 +10,7 @@ class Available extends React.Component {
     }
 
     componentDidMount(){
-        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.user._id}`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.user._id}`, {withCredentials: true})
         .then(response => {
             let allDates = response.data.availability;
             let availability = allDates.map((dateTime)=> {

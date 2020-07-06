@@ -25,7 +25,7 @@ class Home extends Component {
               {
                 this.state.message ? 
                 <h1>{this.state.message}</h1> :
-                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
               }
             </div>
           </div>
