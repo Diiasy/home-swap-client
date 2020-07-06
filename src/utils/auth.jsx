@@ -13,9 +13,7 @@ export const signup = (user)=>{
         url: "/user/signup",
         data: qs.stringify(user)
     })
-    .then((response)=> {        
-        setUser(response.data);
-    })
+    .catch(err => console.log(err));
 }
 
 export const setUser = (user)=> {
