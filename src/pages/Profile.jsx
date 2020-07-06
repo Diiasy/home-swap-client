@@ -10,7 +10,7 @@ import RemoveDates from '../components/RemoveDates';
 import Calendar from '../components/Calendar';
 import Reviews from '../components/Reviews';
 import SendMessageBtn from '../components/SendMessageBtn';
-import '../layouts/loading.css'
+import '../layouts/loading.css';
 
 class Profile extends Component {
     constructor(props) {

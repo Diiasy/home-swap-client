@@ -7,7 +7,6 @@ import {Route} from "react-router-dom";
 import MemberCard from '../components/MemberCard';
 import MapCard from '../components/MapCard.jsx';
 
-
 // mapboxgl.accessToken = `${process.env.MAPBOX_ACCESS_TOKEN}`;
 mapboxgl.accessToken = `pk.eyJ1IjoibmllbmtlMDkwNSIsImEiOiJja2MwYWludnAxaHM2MnRsZ3c4b3l0dHNqIn0.FIQX7sNolXaZEVPAUxOIrg`;
 
@@ -83,6 +82,7 @@ export default class Map extends Component {
             <Default>
                 <div className="mapContainer">
                     <MapCard {...this.props} ref={this.mapRef} />
+
                     <Route exact path="/map/member/:userId" render={(props)=> <MemberCard user={this.state.user}/>} /> 
                 </div>
             </Default>
