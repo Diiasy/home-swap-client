@@ -20,7 +20,7 @@ class App extends Component {
           <Route exact path="/user/signup" component={Signup} />
           <Route exact path="/user/login" component={Login} />
           <Route exact path="/user/logout" component={Logout} />
-          <Route exact path="/user/profile" component={List} />
+          <Route exact path="/properties" component={List} />
           <ProtectRoute path="/user/profile/:id" redirectTo="/user/login" component={Profile} />
           <Route path="/map" component={Map} />
           <ProtectRoute path="/conversations" redirectTo="user/login" component={ConversationList} />

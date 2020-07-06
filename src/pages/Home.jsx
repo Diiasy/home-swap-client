@@ -19,15 +19,17 @@ class Home extends Component {
 
   render() {
     return(
-      <div className="home">
         <Default>
-          {
-            this.state.message ? 
-            <h1>{this.state.message}</h1> :
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-          }
+          <div className="container">
+            <div className="home">
+              {
+                this.state.message ? 
+                <h1>{this.state.message}</h1> :
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+              }
+            </div>
+          </div>
         </Default>
-      </div>
     )
   }
 }

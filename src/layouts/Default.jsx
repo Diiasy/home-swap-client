@@ -3,10 +3,11 @@ import Navbar from '../components/Navbar';
 
 function Default(props) {
     return(
-        <div className="default">
+        <div>
             <Navbar />
             {props.children}
         </div>
+
     )
 }
 
