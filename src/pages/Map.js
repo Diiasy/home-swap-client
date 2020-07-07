@@ -17,9 +17,7 @@ export default class Map extends Component {
         this.setNewUser = this.setNewUser.bind(this);
 
         this.state = {
-            // lng: -21,
-            // lat: 64,
-            // zoom: 2,
+
             users: [],
             user: null
         };
@@ -28,7 +26,6 @@ export default class Map extends Component {
     }
 
     componentDidMount() {
-        
         const map = new mapboxgl.Map({
             container: this.mapRef.current,            
             style: 'mapbox://styles/mapbox/streets-v11', // style URL
@@ -58,7 +55,6 @@ export default class Map extends Component {
                 el.style.backgroundSize = "contain";
                 el.style.width = 40 + 'px';
                 el.style.height = 58 + 'px';
-                // el.style.position = "relative";
                 el.style.top = -29 + "px";
                 el.addEventListener('click', function() {
                     fixThis.setState({user})

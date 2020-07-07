@@ -7,7 +7,7 @@ class ProfileCard extends Component {
     render() {
         let pictures = this.props.user.pictures;
         return(
-            <div className="row justify-content-center m-3">
+            <div  className="row justify-content-center m-3">
             
                 <div className="col-md-10 col-lg-4 my-2">
                     <h2>Home details</h2>
@@ -21,8 +21,8 @@ class ProfileCard extends Component {
                     <Carousel>
                         {
                             pictures && pictures.map(picture =>
-                                <Carousel.Item>
-                                    <img className="d-block w-100" key={picture._id} src={picture.path} alt={picture.name} />
+                                <Carousel.Item  key={picture._id}>
+                                    <img className="d-block w-100" src={picture.path} alt={picture.name} />
                                 </Carousel.Item>
                             )
                         }

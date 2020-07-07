@@ -25,7 +25,7 @@ class ConversationList extends Component {
   }
 
   render() {
-    if(this.state.conversations.length === 0) return <Default><div className="lds-ring col-12 d-flex justify-content-center mt-5"><div></div><div></div><div></div><div></div></div></Default>;
+    if(this.state.conversations.length === 0) return <Default><h4>No conversations yet. Why not try sending a message?</h4></Default>;
     return(
         <Default>
         <div className="container-fluid d-flex">

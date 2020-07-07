@@ -43,8 +43,8 @@ class Login extends Component {
                         <div id="form">
                             <h2 className="mb-4">Login</h2>
                             <div className="form-group">
-                                <label htmlFor="username">Username</label>
-                                <input className="form-control" type="text" onChange={this.handleChange} name="username" placeholder="Username" />
+                                <label htmlFor="username">Username or email</label>
+                                <input className="form-control" type="text" onChange={this.handleChange} name="usernameOrEmail" placeholder="Username or email" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>

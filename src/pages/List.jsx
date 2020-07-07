@@ -51,8 +51,8 @@ class List extends Component {
         if(this.state.users === null) return <Default><div className="lds-ring col-12 d-flex justify-content-center mt-5"><div></div><div></div><div></div><div></div></div></Default>;
             return(
                 <Default>
-                    <div class="container-fluid">
-                        <div class="row d-flex justify-content-end my-2">
+                    <div className="container-fluid">
+                        <div className="row d-flex justify-content-end my-2">
                             <form className="form-inline mt-3 mr-4">
                                 <input className ="form-control mr-sm-2" 
                                     type="text"

@@ -34,7 +34,7 @@ button {
     color:  #0E7373 !important;
     padding: 10px !important;;
     margin: 10px !important;;
-    max-width: 175px !important;;
+    max-width: 180px;
     border-radius: 10px !important;;
     text-align: center !important;;
 }

@@ -10,6 +10,7 @@ import List from './pages/List';
 import Profile from './pages/Profile';
 import Map from './pages/Map';
 import ConversationList from './pages/ConversationList';
+import PageNotFound from './pages/PageNotFound'
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
           <ProtectRoute path="/user/profile/:id" redirectTo="/user/login" component={Profile} />
           <Route path="/map" component={Map} />
           <ProtectRoute path="/conversations" redirectTo="user/login" component={ConversationList} />
+          <Route path="/" component={PageNotFound} />
         </Switch>
       </div>
     )

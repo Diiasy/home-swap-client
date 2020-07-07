@@ -33,8 +33,8 @@ class EditProfilePictures extends Component {
             <div className="row">
                 {
                     pictures && pictures.map(picture => 
-                        <div>
-                            <img key={picture._id} src={picture.path} alt={picture.name} className="col-8 m-2"/>
+                        <div key={picture._id}>
+                            <img src={picture.path} alt={picture.name} className="col-8 m-2"/>
                             <button type="submit" onClick = {() => this.props.deletePictures(picture._id)}>Delete Picture</button>
                         </div>
                     )

@@ -4,12 +4,6 @@ import { getUser } from '../utils/auth';
 import '../layouts/Navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-
-
-
-
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Navbar() {
   let user = getUser();

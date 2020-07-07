@@ -3,3 +3,7 @@
   max-height: 600px;
   overflow: hidden;
 }
+
+.profile-button {
+  width: 175px !important;
+}

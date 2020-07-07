@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import qs from 'qs';
 import axios from 'axios';
-// import InputRange from 'react-input-range';
 
 export default class AddReview extends Component {
     constructor(props) {
@@ -56,11 +55,6 @@ export default class AddReview extends Component {
                     <div className="form-group">
                         <label htmlFor="score">Score</label>
                         <input type="range" name="score" className="form-control-range range" min="1" max="10" onChange={this.handleChange} />
-                        {/* <InputRange
-                            maxValue={10}
-                            minValue={0}
-                            score={this.state.score}
-                            onChange={ this.handleChange} /> */}
                     </div>
                     <button onClick={this.addReview} type="submit">Submit</button>
                 </form>
