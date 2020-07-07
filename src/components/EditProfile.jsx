@@ -96,7 +96,7 @@ class EditProfile extends Component {
                     </div>
                     <div className="form-group ">
                         <label htmlFor="email">Home description</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="homeDescription" value={this.state.user.homeDescription} placeholder="Home description" />
+                        <textarea className="form-control" onChange={this.handleChange} name="homeDescription" value={this.state.user.homeDescription} placeholder="Home description" />
                     </div>
                     <div className="form-group ">
                         <label htmlFor="email">City</label>

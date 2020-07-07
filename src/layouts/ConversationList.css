@@ -1,0 +1,11 @@
+.conversation-link {
+    text-decoration: none;
+    color: black
+}
+
+.conversation-link:hover {
+    font-weight: 600;
+    text-decoration: underline;
+
+}
+

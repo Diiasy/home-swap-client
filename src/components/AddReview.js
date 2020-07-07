@@ -51,7 +51,7 @@ export default class AddReview extends Component {
                 <form className="col-10 p-2" id="review">
                     <div className="form-group">
                         <label htmlFor="review">Review</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="content" placeholder="Leave a review"/>
+                        <textarea className="form-control" onChange={this.handleChange} name="content" placeholder="Leave a review"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="score">Score</label>

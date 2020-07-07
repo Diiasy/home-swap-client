@@ -5,7 +5,7 @@ export default class Search extends Component {
     searchProperties(e){
         let searchTerm = e.target.value;
         if (searchTerm.length === 0){
-            return this.setState({filteredBeers: this.state.beers})
+            return this.setState({filteredProperties: this.state.properties})
         }
         axios({
             url:`${process.env.REACT_APP_BASE_URL}/user/search?q=${searchTerm}`,
@@ -13,7 +13,7 @@ export default class Search extends Component {
             withCredentials: true
         })
         .then(response => {
-            this.setState({filteredBeers: response.data});
+            this.setState({filteredProperties: response.data});
         });
     }
 

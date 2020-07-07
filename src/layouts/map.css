@@ -1,0 +1,10 @@
+.mapContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mapStyles {
+  width: "50%";
+  height: "100vh";
+}
+

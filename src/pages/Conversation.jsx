@@ -56,10 +56,9 @@ class Conversation extends Component {
             {
                 this.state.messages && this.state.messages.map(message => 
                     <div className = 'message'>
-                        <p>{message.from.username}</p>
-                        <p>{this.transformDate(message.createdAt)}</p>
-                        <p>{this.getTime(message.createdAt)}</p>
                         <p>{message.message}</p>
+                        <p><i>{message.from.username} - {this.transformDate(message.createdAt)} {this.getTime(message.createdAt)}</i></p>
+                        <hr/>
                     </div>
                 )
             }

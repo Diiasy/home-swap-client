@@ -4,7 +4,8 @@ import uid from "uid";
 import { Link, Route } from 'react-router-dom';
 import Default from '../layouts/Default';
 import Conversation from './Conversation';
-import '../layouts/loading.css'
+import '../layouts/loading.css';
+import '../layouts/ConversationList.css';
 
 class ConversationList extends Component {
   state = {
@@ -24,23 +25,31 @@ class ConversationList extends Component {
   }
 
   render() {
-    if(this.state.conversations.length === 0) return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
+    if(this.state.conversations.length === 0) return <Default><div className="lds-ring col-12 d-flex justify-content-center mt-5"><div></div><div></div><div></div><div></div></div></Default>;
     return(
-      <div className="conversationlist">
         <Default>
+        <div className="container-fluid d-flex">
+          <div className="col-3">
+            <h4>Chats</h4>
           {
             this.state.conversations && this.state.conversations.map(conversation => 
               <div key={conversation[1]._id}>
               
               <Link to={`/conversations/${conversation[0]}`}>
-                  <p>{conversation[1].username}</p>
+                  <p className="conversation-link">{conversation[1].username}</p>
               </Link>
               </div>
             )
           }
-          <Route path="/conversations/:conversationId" render={props=> <Conversation key={uid()} {...props}/>} />
+          </div>
+          <div className="col-9">
+            <h4>Messages</h4>
+            <Route path="/conversations/:conversationId" render={props=> <Conversation key={uid()} {...props}/>} />
+          </div>
+
+          </div>
+
         </Default>
-      </div>
     )
   }
 }

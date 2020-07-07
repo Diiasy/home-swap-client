@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
-import './map.css';
 import axios from 'axios';
 import Default from '../layouts/Default';
 import {Route} from "react-router-dom";
 import MemberCard from '../components/MemberCard';
+import '../layouts/map.css';
 import MapCard from '../components/MapCard.jsx';
+
 
 // mapboxgl.accessToken = `${process.env.MAPBOX_ACCESS_TOKEN}`;
 mapboxgl.accessToken = `pk.eyJ1IjoibmllbmtlMDkwNSIsImEiOiJja2MwYWludnAxaHM2MnRsZ3c4b3l0dHNqIn0.FIQX7sNolXaZEVPAUxOIrg`;
@@ -53,12 +54,12 @@ export default class Map extends Component {
             response.data.forEach((user)=> {
                 var el = document.createElement('div');
                 el.className = 'marker';
-                el.style.backgroundImage =
-                'url(https://placekitten.com/g/' +
-                [40, 40].join('/') +
-                '/)';
+                el.style.backgroundImage= 'url(/marker.png)';
+                el.style.backgroundSize = "contain";
                 el.style.width = 40 + 'px';
-                el.style.height = 40 + 'px';
+                el.style.height = 58 + 'px';
+                // el.style.position = "relative";
+                el.style.top = -29 + "px";
                 el.addEventListener('click', function() {
                     fixThis.setState({user})
                     fixHistory.push(`/map/member/${user._id}`)
@@ -80,7 +81,7 @@ export default class Map extends Component {
     render() {
         return (
             <Default>
-                <div className="mapContainer">
+                <div className="mapContainer container-fluid">
                     <MapCard {...this.props} ref={this.mapRef} />
 
                     <Route exact path="/map/member/:userId" render={(props)=> <MemberCard user={this.state.user}/>} /> 

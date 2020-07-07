@@ -99,7 +99,7 @@ class Profile extends Component {
     }
 
     render() {
-        if(this.state.user === null) return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
+        if(this.state.user === null) return <Default><div className="lds-ring col-12 d-flex justify-content-center mt-5"><div></div><div></div><div></div><div></div></div></Default>;
         if (this.currentUser._id === this.props.match.params.id) {
             return(
                 <Default>
