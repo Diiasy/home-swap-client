@@ -6,7 +6,7 @@ class PageNotFound extends Component {
     render() {
         return(
             <Default>
-                <h1>Page not found</h1>
+                <h2>Page not found</h2>
                 <img  src="https://media.giphy.com/media/M28rUlcjueKUE/giphy.gif" alt="sad gif"/>
             </Default>
         )

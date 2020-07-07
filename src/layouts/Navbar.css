@@ -15,7 +15,7 @@
     list-style: none;
     justify-content: space-evenly;
     padding: 0 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.205);
+    border-bottom: 1px solid #C1D0D9;
 }
 
 .nav-list {
@@ -26,11 +26,12 @@
 
 a.nav-link {
     display: block;
+    color: black !important;
 }
 
 .nav-link:hover {
-    text-decoration: underline;
-    text-decoration-color: #81a780;    
+    text-decoration: underline !important;
+    text-decoration-color: #0E7373 !important;    
 }
 
 
@@ -42,14 +43,3 @@ a.nav-link {
     box-shadow: none;
     margin-bottom: 3px
 }
-
-.navbar-brand {
-    color: rgba(0,0,0,.5) !important;
-    font-size: 1rem !important;
-}
-
-.navbar-brand:hover {
-    text-decoration: underline;
-    text-decoration-color: #81a780;  
-}
-

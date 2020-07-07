@@ -1,0 +1,11 @@
+.react-datepicker__day--in-range {
+    background-color: #0E7373 !important;
+}
+
+.react-datepicker__day {
+    color: #0E7373;
+}
+
+.react-datepicker__day--disabled {
+    color: #C1D0D9;
+}

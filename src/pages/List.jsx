@@ -48,7 +48,7 @@ class List extends Component {
     } 
 
     render() {
-        if(this.state.users === null) return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
+        if(this.state.users === null) return <Default><div className="lds-ring col-12 d-flex justify-content-center mt-5"><div></div><div></div><div></div><div></div></div></Default>;
             return(
                 <Default>
                     <div className="container-fluid">
@@ -68,11 +68,11 @@ class List extends Component {
                         {
                             this.state.filteredUsers.map(user =>
                                 user.pictures.length > 0 &&
-                                <div key={user._id} className="col-md-10 col-lg-4 my-2 d-flex justify-content-around">
+                                <div key={user._id} className="col-md-10 col-lg-6 col-xl-4 my-2 d-flex justify-content-around">
                                     <Link to={`/user/profile/${user._id}`} className="user-card">
                                         <div className="card">
                                             <h5 className="card-title p-2">{user.homeName}</h5>
-                                            <img src={user.pictures[0].path} className="card-img-top" alt=""/>
+                                            <img src={user.pictures[0].path} className="card-img-top image-responsive" alt=""/>
                                             <div className="card-body">
                                                 <p className="card-text">{user.city}</p>
                                                 <p className="card-text">{user.homeDescription}</p>

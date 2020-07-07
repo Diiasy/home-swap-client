@@ -16,7 +16,9 @@ class Logout extends Component {
     render() {
         return (
             <Default>
-                <h1>Logging out!</h1>
+                <div className="container-fluid">
+                <h2 className="mb-4">See you soon!</h2>
+                </div>
             </Default>
         )
     }

@@ -5,6 +5,8 @@ import axios from 'axios';
 import qs from 'qs';
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import '../layouts/Calendar.css';
+
  
 class Available extends React.Component {
     constructor() {
@@ -94,7 +96,10 @@ class Available extends React.Component {
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
                 />
-                <button onClick={this.addAvailability} type="submit">Submit</button>
+                <div className="col d-flex justify-content-center">
+                    <button onClick={this.addAvailability} type="submit">Submit</button>
+
+                </div>
             </div>
         );
     }

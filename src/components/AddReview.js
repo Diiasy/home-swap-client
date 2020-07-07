@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import qs from 'qs';
 import axios from 'axios';
-// import InputRange from 'react-input-range';
 
 export default class AddReview extends Component {
     constructor(props) {
@@ -51,16 +50,11 @@ export default class AddReview extends Component {
                 <form className="col-10 p-2" id="review">
                     <div className="form-group">
                         <label htmlFor="review">Review</label>
-                        <input className="form-control" type="text" onChange={this.handleChange} name="content" placeholder="Leave a review"/>
+                        <textarea className="form-control" onChange={this.handleChange} name="content" placeholder="Leave a review"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="score">Score</label>
                         <input type="range" name="score" className="form-control-range range" min="1" max="10" onChange={this.handleChange} />
-                        {/* <InputRange
-                            maxValue={10}
-                            minValue={0}
-                            score={this.state.score}
-                            onChange={ this.handleChange} /> */}
                     </div>
                     <button onClick={this.addReview} type="submit">Submit</button>
                 </form>

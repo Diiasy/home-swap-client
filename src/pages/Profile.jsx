@@ -113,7 +113,7 @@ class Profile extends Component {
     }
 
     render() {
-        if(this.state.user === null) return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
+        if(this.state.user === null) return <Default><div className="lds-ring col-12 d-flex justify-content-center mt-5"><div></div><div></div><div></div><div></div></div></Default>;
         if (this.currentUser._id === this.props.match.params.id) {
             return(
                 <Default>
@@ -124,16 +124,18 @@ class Profile extends Component {
                                 <h4>Edit Profile & Availability</h4>
                             </div>
 
-                            <div className="col-md-10 col-lg-6 my-2 d-flex justify-content-between">
-                                {this.state.calendar && <Calendar user = {this.state.user} /> }
-                                {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                                {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                                {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                                <div className="d-flex flex-column col-4">
-                                    <Link className="button" to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit Profile</Link>
-                                    <Link className="button" to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
-                                    <Link className="button" to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>
-                                    <button className="button" onClick={this.deleteUserHandler} type="submit">Delete your profile</button>
+                            <div className="row justify-content-center m-3">
+                                <div className="col-md-12 col-lg-8">
+                                    {this.state.calendar && <Calendar user = {this.state.user} /> }
+                                    {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                                    {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                                    {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                                </div>
+                                <div className="col-md-12 col-lg-4 d-flex flex-column justify-content-center">
+                                    <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit Profile</Link>
+                                    <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
+                                    <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>
+                                    <button className="button profile-button" onClick={this.deleteUserHandler} type="submit">Delete your profile</button>
                                 </div>
                             </div>
 

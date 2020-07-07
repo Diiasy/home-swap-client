@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import service from "../utils/service";
 import uid from 'uid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
+
 
 class EditProfilePictures extends Component {
     constructor(props) {
@@ -33,9 +37,11 @@ class EditProfilePictures extends Component {
             <div className="row">
                 {
                     pictures && pictures.map(picture => 
-                        <div key={picture._id}>
-                            <img src={picture.path} alt={picture.name} className="col-8 m-2"/>
-                            <button type="submit" onClick = {() => this.props.deletePictures(picture._id)}>Delete Picture</button>
+                        <div key={picture._id} className="col-md-12 col-lg-6 d-flex justify-content-center">
+                            <img src={picture.path} alt={picture.name} className="col-10 m-1"/>
+                            <div className="col-2">
+                                <button type="submit" className="p-2 " onClick = {() => this.props.deletePictures(picture._id)}><FontAwesomeIcon icon={faTrash}/></button>
+                            </div>
                         </div>
                     )
                 }
