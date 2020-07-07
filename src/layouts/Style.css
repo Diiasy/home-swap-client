@@ -8,7 +8,6 @@ body {
 
 }
 
-
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto Slab', serif;
     font-weight: 600;
@@ -38,6 +37,7 @@ button {
     border-radius: 10px !important;
     text-align: center !important;
 }
+
 hr {
     border-color: #C1D0D9 !important;
 }

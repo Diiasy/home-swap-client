@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link, Route } from 'react-router-dom'; 
-import { getUser, removeUser } from '../utils/auth';
+import { getUser } from '../utils/auth';
 import Default from '../layouts/Default';
 import EditProfile from '../components/EditProfile';
 import ProfileCard from '../components/ProfileCard';
@@ -10,6 +10,7 @@ import RemoveDates from '../components/RemoveDates';
 import Calendar from '../components/Calendar';
 import Reviews from '../components/Reviews';
 import SendMessageBtn from '../components/SendMessageBtn';
+import DeleteUser from '../components/DeleteUser';
 import '../layouts/loading.css';
 
 class Profile extends Component {
@@ -18,7 +19,6 @@ class Profile extends Component {
         this.fetchUser = this.fetchUser.bind(this);
         this.toggleForms = this.toggleForms.bind(this);
         this.profileUpdate = this.profileUpdate.bind(this);
-        this.deleteUserHandler = this.deleteUserHandler.bind(this);
     }
 
     state = {
@@ -27,7 +27,8 @@ class Profile extends Component {
         error: null,
         editCalendar: false,
         removeDates: false,
-        calendar: true
+        calendar: true,
+        confirmationMessage: false
     }
 
     currentUser = getUser();
@@ -60,7 +61,8 @@ class Profile extends Component {
                     form: true,
                     addDates: false,
                     removeDates: false,
-                    calendar: false 
+                    calendar: false,
+                    confirmationMessage: false
                 });
                 break;
             case "addDates":
@@ -68,7 +70,8 @@ class Profile extends Component {
                     form: false,
                     addDates: true,
                     removeDates: false,
-                    calendar: false 
+                    calendar: false,
+                    confirmationMessage: false
                 });
                 break;
             case "removeDates":
@@ -76,7 +79,17 @@ class Profile extends Component {
                     form: false,
                     addDates: false,
                     removeDates: true,
-                    calendar: false 
+                    calendar: false,
+                    confirmationMessage: false
+                });
+                break;
+            case "confirmationMessage":
+                this.setState({
+                    form: false,
+                    addDates: false,
+                    removeDates: false,
+                    calendar: true,
+                    confirmationMessage: true
                 });
                 break;
             default:
@@ -84,32 +97,22 @@ class Profile extends Component {
                     form: false,
                     addDates: false,
                     removeDates: false,
-                    calendar: true
+                    calendar: true,
+                    confirmationMessage: false
                 });
         }
     }
 
     profileUpdate(response){
+        // debugger
         this.fetchUser();        
         this.setState({
             form: false,
             addDates: false,
             removeDates: false,
-            calendar: true
+            calendar: true,
+            confirmationMessage: false
         });
-    }
-
-    deleteUserHandler(){
-        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/delete`, {withCredentials: true})
-        .then(() => {
-            removeUser();
-            this.props.history.push(`/`);
-        })
-        .catch(err => {
-            this.setState({
-                error: err.response.data.message
-            })
-        })
     }
 
     render() {
@@ -129,13 +132,14 @@ class Profile extends Component {
                                     {this.state.calendar && <Calendar user = {this.state.user} /> }
                                     {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                                     {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                                    {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                                    {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates   user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                                    {this.state.confirmationMessage && <Route path={`/user/profile/:id/delete`} render={(props) => <DeleteUser {...props} user={this.state.user} profileUpdate={this.profileUpdate}/>} />}
                                 </div>
                                 <div className="col-md-12 col-lg-4 d-flex flex-column justify-content-center">
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit Profile</Link>
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>
-                                    <button className="button profile-button" onClick={this.deleteUserHandler} type="submit">Delete your profile</button>
+                                    <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/delete`} onClick={() => this.toggleForms("confirmationMessage")}>Delete your profile</Link>
                                 </div>
                             </div>
 
