@@ -64,11 +64,11 @@ class List extends Component {
                         </div>
                     </div>
                     <div className="container-fluid center-box">
-                        <div className="row">
+                        <div className="row m-3">
                         {
                             this.state.filteredUsers.map(user =>
                                 user.pictures.length > 0 &&
-                                <div key={user._id} className="col-md-10 col-lg-6 col-xl-4 my-2 d-flex justify-content-around">
+                                <div key={user._id} className="col-sm-12 col-md-6 col-xl-4 my-2 d-flex justify-content-around">
                                     <Link to={`/user/profile/${user._id}`} className="user-card">
                                         <div className="card">
                                             <h5 className="card-title p-2">{user.homeName}</h5>
