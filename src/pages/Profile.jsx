@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link, Route } from 'react-router-dom'; 
-import { getUser } from '../utils/auth';
+import { getUser, removeUser } from '../utils/auth';
 import Default from '../layouts/Default';
 import EditProfile from '../components/EditProfile';
 import ProfileCard from '../components/ProfileCard';
@@ -18,6 +18,7 @@ class Profile extends Component {
         this.fetchUser = this.fetchUser.bind(this);
         this.toggleForms = this.toggleForms.bind(this);
         this.profileUpdate = this.profileUpdate.bind(this);
+        this.deleteUserHandler = this.deleteUserHandler.bind(this);
     }
 
     state = {
@@ -98,6 +99,19 @@ class Profile extends Component {
         });
     }
 
+    deleteUserHandler(){
+        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}/delete`, {withCredentials: true})
+        .then(() => {
+            removeUser();
+            this.props.history.push(`/`);
+        })
+        .catch(err => {
+            this.setState({
+                error: err.response.data.message
+            })
+        })
+    }
+
     render() {
         if(this.state.user === null) return <Default><div className="lds-ring col-12 d-flex justify-content-center mt-5"><div></div><div></div><div></div><div></div></div></Default>;
         if (this.currentUser._id === this.props.match.params.id) {
@@ -121,6 +135,7 @@ class Profile extends Component {
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit Profile</Link>
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>
+                                    <button className="button profile-button" onClick={this.deleteUserHandler} type="submit">Delete your profile</button>
                                 </div>
                             </div>
 
