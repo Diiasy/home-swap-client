@@ -7,9 +7,7 @@ import MemberCard from '../components/MemberCard';
 import '../layouts/map.css';
 import MapCard from '../components/MapCard.jsx';
 
-
-// mapboxgl.accessToken = `${process.env.MAPBOX_ACCESS_TOKEN}`;
-mapboxgl.accessToken = `pk.eyJ1IjoibmllbmtlMDkwNSIsImEiOiJja2MwYWludnAxaHM2MnRsZ3c4b3l0dHNqIn0.FIQX7sNolXaZEVPAUxOIrg`;
+mapboxgl.accessToken = `${process.env.REACT_APP_MAP_BOX_ACCESS_TOKEN}`;
 
 export default class Map extends Component {
     constructor(props) {
