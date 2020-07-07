@@ -12,7 +12,7 @@ function NavbarApp() {
 
   if (user) {
     return(
-      <Navbar collapseOnSelect expand="md" bg="light" variant="light" className="navbar">
+      <Navbar collapseOnSelect expand="md" variant="light" className="navbar-style">
         <div className="container-fluid nav">
           <div className="brand">
             <Link className="nav-link navbar-icon img-fluid" to='/'>
@@ -44,7 +44,7 @@ function NavbarApp() {
     )
   } else {
     return (
-      <Navbar collapseOnSelect expand="md" bg="light" variant="light" className="navbar">
+      <Navbar collapseOnSelect expand="md" variant="light" className="navbar-style">
         <div className="container-fluid nav">
           <div className="brand">
             <Link className="nav-link navbar-icon img-fluid" to='/'>

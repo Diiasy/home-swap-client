@@ -11,8 +11,8 @@ import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg
 function NavbarApp() {
     return(
         <div>
-                <div className="spacer">
-                </div>
+            <div className="spacer">
+            </div>
 
             <footer className="footer">
                 <div className="container-fluid my-2">

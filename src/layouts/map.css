@@ -2,8 +2,3 @@
   display: flex;
   flex-wrap: wrap;
 }
-
-.mapStyles {
-  width: "50%";
-  height: 60vh;
-}

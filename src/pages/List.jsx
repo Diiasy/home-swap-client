@@ -5,8 +5,6 @@ import Default from '../layouts/Default';
 import '../layouts/loading.css';
 import '../layouts/List.css';
 
-
-
 class List extends Component {
     constructor(props) {
         super(props);
