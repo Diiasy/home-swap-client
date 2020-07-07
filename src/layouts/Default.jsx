@@ -1,5 +1,7 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import NavbarApp from '../components/Navbar';
+import Footer from '../components/Footer';
+
 import '../layouts/Style.css';
 
 
@@ -7,8 +9,10 @@ import '../layouts/Style.css';
 function Default(props) {
     return(
         <div>
-            <Navbar />
+            <NavbarApp />
             {props.children}
+            <Footer />
+
         </div>
 
     )
