@@ -21,10 +21,10 @@ button {
     border: 2px solid #0E7373  !important;
     font-weight: 600 !important;
     color:  #0E7373 !important;
-    padding: 10px !important;;
-    margin: 10px !important;
-    border-radius: 10px !important;;
-    text-align: center !important;;
+    padding: 10px ;
+    margin: 10px ;
+    border-radius: 10px !important;
+    text-align: center !important;
 }
 
 .button {
@@ -32,11 +32,11 @@ button {
     border: 2px solid #0E7373  !important;
     font-weight: 600 !important;
     color:  #0E7373 !important;
-    padding: 10px !important;;
-    margin: 10px !important;;
+    padding: 10px;
+    margin: 10px ;
     max-width: 180px;
-    border-radius: 10px !important;;
-    text-align: center !important;;
+    border-radius: 10px !important;
+    text-align: center !important;
 }
 hr {
     border-color: #C1D0D9 !important;

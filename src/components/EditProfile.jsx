@@ -105,7 +105,9 @@ class EditProfile extends Component {
                 </form>
                 {<Route path={`/user/profile/:id/edit`} render={() => <EditProfilePictures addPicture={this.addPictureHandler} deletePictures={this.deletePicturesHandler} user = {this.state.user} />} />}
                 {this.state.error && <p>{this.state.error}</p>}
-                <button onClick={this.editProfile}>Submit</button>
+                <div className="col justify-content-center d-flex">
+                    <button onClick={this.editProfile}>Submit</button>
+                </div>
             </div>
         )
     }
