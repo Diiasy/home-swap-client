@@ -4,6 +4,9 @@ import AddReview from '../components/AddReview';
 import { getUser } from '../utils/auth';
 import uid from 'uid';
 
+
+
+
 export default class Reviews extends Component {
     constructor() {
         super();
@@ -43,21 +46,28 @@ export default class Reviews extends Component {
             
         }
             return(
-                <div>
-                    <h4>Reviews</h4>
+                <div className="row d-flex justify-content-center text-center m-3">
+                    <div className="col-10">
+                        <h4 className="my-2">Reviews</h4>
+                    </div>
+                    <div className="col-10 d-flex justify-content-center d-flex flex-column">
                     {
                         this.state.reviews.map((review)=>
-                            <div key={uid()} className="d-flex justify-content-center">
-                                <div className="col-9 text-wrap list-text">
-                                    <p className="mb-2">{review.content}</p>
+                                <div className="text-wrap list-text m-2" key={uid()}>
+                                    <p>{review.content}</p>
                                     <h6><span className="font-weight-bold">Reviewed by: </span>{review.reviewer.name} <span className="font-weight-bold">Score: </span>{review.score}</h6>
-                                </div>
+                                    <hr/>
                             </div>
                         )
                     }
-                    {addReview}
+
+                    </div>
+                    <div className="col-8">
+                        {addReview}
+                    </div>
 
                 </div>
+
             )
     }
 }

@@ -24,7 +24,7 @@ class ConversationList extends Component {
   }
 
   render() {
-    if(this.state.conversations.length === 0) return <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
+    if(this.state.conversations.length === 0) return <Default>No conversation yet.</Default>;
     return(
       <div className="conversationlist">
         <Default>

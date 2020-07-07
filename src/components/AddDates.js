@@ -21,12 +21,12 @@ class Available extends React.Component {
     }
 
     componentDidMount(){
-        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.match.params.id}`, {withCredentials: true})
         .then(response => {
             let allDates = response.data.availability;
             let availability = allDates.map((dateTime)=> {
-                let dt = new Date(dateTime);
-                return Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate());
+            let dt = new Date(dateTime);
+            return Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate());
             });
             this.setState({availability});
         })

@@ -27,7 +27,6 @@ export default class Map extends Component {
     }
 
     componentDidMount() {
-        
         const map = new mapboxgl.Map({
             container: this.mapRef.current,            
             style: 'mapbox://styles/mapbox/streets-v11', // style URL

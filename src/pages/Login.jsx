@@ -31,28 +31,31 @@ class Login extends Component {
             this.props.history.push(`/user/profile/${userId._id}`);
         })
         .catch(err => {
-            this.setState({error: err.response.data.errorMessage})
-        })
+            this.setState({error: err.response.data.errorMessage});
+        });
     }
 
     render() {
         return (
             <Default>
-                <div className="login">
-                    <form className="container">
-                        <div className="form-group">
-                            <label htmlFor="usernameOrEmail">Username or email</label>
-                            <input className="form-control" type="text" onChange={this.handleChange} name="usernameOrEmail" placeholder="Username or email" />
+                <div className="container d-flex justify-content-center my-3">
+                    <div className="col-8">
+                        <div id="form">
+                            <h2 className="mb-4">Login</h2>
+                            <div className="form-group">
+                                <label htmlFor="username">Username or email</label>
+                                <input className="form-control" type="text" onChange={this.handleChange} name="usernameOrEmail" placeholder="Username or email" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">Password</label>
+                                <input className="form-control" type="password" onChange={this.handleChange} name="password" placeholder="Password" />
+                            </div>
+                            
+                            <button onClick={this.loginUser} type="submit">Submit</button>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input className="form-control" type="password" onChange={this.handleChange} name="password" placeholder="Password" />
-                        </div>
-                        
-                        <button onClick={this.loginUser} type="submit">Submit</button>
-                    </form>
+                    </div>
+                    {this.state.error && <p>{this.state.error}</p>}
                 </div>
-                {this.state.error && <p>{this.state.error}</p>}
             </Default>
         )
     }

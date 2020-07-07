@@ -85,20 +85,20 @@ class EditProfile extends Component {
     render() {
         return(
             <div>
-                <form onSubmit={this.editProfile}  className="container">
+                <form onSubmit={this.editProfile}>
                     <div className="form-group">
                         <label htmlFor="firstname">Name</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="name" value={this.state.user.name} placeholder="First name" />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group ">
                         <label htmlFor="lastname">Home name</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="homeName" value={this.state.user.homeName} placeholder="Home name" />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group ">
                         <label htmlFor="email">Home description</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="homeDescription" value={this.state.user.homeDescription} placeholder="Home description" />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group ">
                         <label htmlFor="email">City</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="city" value={this.state.user.city} placeholder="City" />
                     </div>
