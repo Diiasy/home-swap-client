@@ -133,8 +133,8 @@ class Profile extends Component {
                                 </div>
                                 <div className="col-md-12 col-lg-4 d-flex flex-column align-items-center">
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit Profile</Link>
-                                    <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>
+                                    <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
                                     <button className="button profile-button" onClick={this.deleteUserHandler} type="submit">Delete your profile</button>
                                 </div>
                             </div>

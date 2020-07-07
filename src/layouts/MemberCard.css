@@ -16,3 +16,7 @@
     text-decoration: underline;
     color: black;
 }
+
+.member-hover {
+    font-weight: 600;
+}

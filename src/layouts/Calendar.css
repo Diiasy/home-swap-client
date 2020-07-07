@@ -1,5 +1,6 @@
 .react-datepicker__day--in-range {
     background-color: #0E7373 !important;
+    color: white !important;
 }
 
 .react-datepicker__day {

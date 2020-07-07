@@ -11,31 +11,26 @@ class MemberCard extends Component {
                 {this.props.user? 
                 <>
                 
-                    <h1>Home Details</h1>
+                    <h2>Home Details</h2>
+                    <hr/>
                     <div className="d-flex justify-content-center text-center flex-column">
                         <Link to={`/user/profile/${this.props.user._id}`} className="link-group d-flex justify-content-center flex-column member-card">
-                            <p className="card-text"><strong>Home Name:</strong></p>
-                            <p className="card-text member-hover">{this.props.user.homeName}</p>
+                            <h4 className="card-text member-hover">{this.props.user.homeName}</h4>
                         </Link>
                     </div>
                     <div className="d-flex justify-content-center text-center flex-column">
                         <div className="card-body d-flex justify-content-center flex-column">
-                            <p className="card-text"><strong>Home Location:</strong></p>
-                            <p className="card-text">{this.props.user.city}</p>
+                            <p className="card-text"><strong>Home Location: </strong><span>{this.props.user.city}</span></p>
                             <p className="card-text"><strong>Description:</strong></p>
                             <p className="card-text">{this.props.user.homeDescription}</p>
-                            <p className="card-text"><strong>Owner:</strong></p>
-                            <p className="card-text">{this.props.user.name}</p>
-
+                            <p className="card-text"><strong>Owner: </strong><span>{this.props.user.name}</span></p>
                         </div>
 
                     </div>
-
+                    <hr/>
                 </> :
-                    <h1>Select Property</h1>
+                    <h2>Select Property</h2>
                 }
-
-
             </div>
         )
     }

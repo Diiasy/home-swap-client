@@ -1,0 +1,18 @@
+/* .carousel-inner {
+    max-height: 60vh;
+}
+     */
+.carousel-img {
+    max-height: 40vh;
+    object-fit: cover
+}
+
+.carousel-link {
+    text-decoration: none;
+    color: white;
+}
+
+.carousel-link:hover {
+    text-decoration: underline solid white;
+    color: white;
+}

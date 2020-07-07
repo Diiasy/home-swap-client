@@ -28,3 +28,17 @@
         object-fit: cover;
     }
 }
+
+.user-card h5 {
+    font-weight: 600;
+}
+
+.location {
+    color: #0E7373;
+    font-weight: 600;
+}
+
+.description {
+    font-weight: 300;
+    color: rgb(31, 31, 31);
+}

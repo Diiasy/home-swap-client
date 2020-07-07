@@ -7,7 +7,6 @@ import MemberCard from '../components/MemberCard';
 import '../layouts/map.css';
 import MapCard from '../components/MapCard.jsx';
 
-
 mapboxgl.accessToken = `${process.env.REACT_APP_MAP_BOX_ACCESS_TOKEN}`;
 
 export default class Map extends Component {
@@ -52,9 +51,9 @@ export default class Map extends Component {
                 el.className = 'marker';
                 el.style.backgroundImage= 'url(/marker.png)';
                 el.style.backgroundSize = "contain";
-                el.style.width = 40 + 'px';
-                el.style.height = 58 + 'px';
-                el.style.top = -29 + "px";
+                el.style.width = 30 + 'px';
+                el.style.height = 44 + 'px';
+                el.style.top = -22 + "px";
                 el.addEventListener('click', function() {
                     fixThis.setState({user})
                     fixHistory.push(`/map/member/${user._id}`)

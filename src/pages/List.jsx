@@ -74,13 +74,12 @@ class List extends Component {
                                             <h5 className="card-title p-2">{user.homeName}</h5>
                                             <img src={user.pictures[0].path} className="card-img-top image-responsive" alt=""/>
                                             <div className="card-body">
-                                                <p className="card-text">{user.city}</p>
-                                                <p className="card-text">{user.homeDescription}</p>
+                                                <p className="card-text location">{user.city}</p>
+                                                <p className="card-text description">{user.homeDescription}</p>
                                             </div>
                                         </div>
                                     </Link>
                                 </div>
-                                
                                 )
                             }
                         </div>
