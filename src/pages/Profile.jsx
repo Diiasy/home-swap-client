@@ -117,7 +117,7 @@ class Profile extends Component {
                                     {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                                     {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                                 </div>
-                                <div className="col-md-12 col-lg-4 d-flex flex-column justify-content-center">
+                                <div className="col-md-12 col-lg-4 d-flex flex-column align-items-center">
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/edit`} onClick={() => this.toggleForms("form")}>Edit Profile</Link>
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/removeavailability`} onClick={() => this.toggleForms("removeDates")}>Remove Availability</Link>
                                     <Link className="button profile-button" to={`/user/profile/${this.props.match.params.id}/available`} onClick={() => this.toggleForms("addDates")}>Provide Availability</Link>

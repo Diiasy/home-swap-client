@@ -88,7 +88,7 @@ class Available extends React.Component {
  
     render() {
         return (
-            <div>
+            <div className="d-flex flex-column justify-content-center align-items-center">
                 <DatePicker
                     inline
                     excludeDates={this.state.availability}
@@ -96,7 +96,7 @@ class Available extends React.Component {
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
                 />
-                <div className="col d-flex justify-content-center">
+                <div className="col">
                     <button onClick={this.addAvailability} type="submit">Submit</button>
 
                 </div>

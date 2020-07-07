@@ -98,7 +98,7 @@ class Available extends React.Component {
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
                 />
-                <div className="col d-flex justify-content-center">
+                <div className="col justify-content-center d-flex">
                     <button onClick={this.addAvailability} type="submit">Submit</button>
 
                 </div>
