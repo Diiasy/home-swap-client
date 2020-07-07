@@ -42,10 +42,17 @@ class Available extends React.Component {
                 selecting: true
             });
         } else {
-            this.setState({
-                endDate: e,
-                selecting: false
-            });
+            if(e < this.state.startDate){
+                this.setState({
+                    startDate: e, 
+                    selecting: true
+                });
+            } else {
+                this.setState({
+                    endDate: e,
+                    selecting: false
+                });
+            }
         }
     }
 
