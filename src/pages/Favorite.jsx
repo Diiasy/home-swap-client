@@ -49,7 +49,7 @@ class Favorite extends Component {
         if(this.state.favorites.length === 0) return <Default>No favorites yet</Default>;
         return(
             <Default>
-            <div className="container-fluid d-flex">
+            <div className="container-fluid">
                 <div className="row m-3">
                     {
                         this.state.favorites.map((favorite, index) =>
@@ -58,7 +58,7 @@ class Favorite extends Component {
                                 <div className="card">
                                     <Link to={`/user/profile/${favorite._id}`} className="user-card">
                                         <h5 className="card-title p-2">{favorite.homeName}</h5>
-                                        <img src={favorite.pictures[0].path} className="card-img-top image-responsive" alt=""/>
+                                        <img src={`${favorite.pictures[0].path}`} className="card-img-top image-responsive" alt=""/>
                                     </Link>        
                                     <div className="card-body">
                                         <div className="row mr-3">
