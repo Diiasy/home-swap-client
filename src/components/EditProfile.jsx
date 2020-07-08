@@ -95,12 +95,16 @@ class EditProfile extends Component {
                         <input className="form-control" type="text" onChange={this.handleChange} name="homeName" value={this.state.user.homeName} placeholder="Home name" />
                     </div>
                     <div className="form-group ">
-                        <label htmlFor="email">Home description</label>
+                        <label htmlFor="homeDescription">Home description</label>
                         <textarea className="form-control" onChange={this.handleChange} name="homeDescription" value={this.state.user.homeDescription} placeholder="Home description" />
                     </div>
                     <div className="form-group ">
-                        <label htmlFor="email">City</label>
+                        <label htmlFor="city">City</label>
                         <input className="form-control" type="text" onChange={this.handleChange} name="city" value={this.state.user.city} placeholder="City" />
+                    </div>
+                    <div className="form-group ">
+                        <label htmlFor="address">Address</label>
+                        <input className="form-control" type="text" onChange={this.handleChange} name="address" value={this.state.user.address} placeholder="Address" />
                     </div>
                 </form>
                 {<Route path={`/user/profile/:id/edit`} render={() => <EditProfilePictures addPicture={this.addPictureHandler} deletePictures={this.deletePicturesHandler} user = {this.state.user} />} />}

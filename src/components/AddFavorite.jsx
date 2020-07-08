@@ -15,14 +15,12 @@ class Favorite extends Component {
     }
 
     addToFavorite() {
-        debugger
         axios({
             url: `${process.env.REACT_APP_BASE_URL}/user/favorite/${this.props.match.params.id}/addToFavorites`,
             method: 'POST',
             withCredentials: true
         })
         .then(response => {
-            debugger
             let favorites = response.data;
             this.setState({favorites});
         })

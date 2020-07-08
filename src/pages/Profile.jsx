@@ -105,7 +105,6 @@ class Profile extends Component {
     }
 
     profileUpdate(response){
-        // debugger
         this.fetchUser();        
         this.setState({
             form: false,
