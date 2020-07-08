@@ -28,7 +28,7 @@ class Available extends React.Component {
  
     render() {
         return (
-            <div>
+            <div className="d-flex justify-content-center">
                 <DatePicker
                     inline
                     includeDates={this.state.availability}
