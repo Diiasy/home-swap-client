@@ -23,11 +23,14 @@ function NavbarApp() {
             <Navbar.Collapse className="collapse navbar-collapse nav-list" id="responsive-navbar-nav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link className="nav-link p-2" to='/properties'>List</Link>
+                  <Link className="nav-link p-2" to='/properties'>Properties</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link p-2" to='/map'>Map</Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link p-2" to='/favorites'>My Favorites</Link>
+                </li>                
                 <li className="nav-item">
                   <Link className="nav-link p-2" to='/conversations'>My Messages</Link>
                 </li>
@@ -55,7 +58,7 @@ function NavbarApp() {
             <Navbar.Collapse className="collapse navbar-collapse nav-list" id="responsive-navbar-nav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link p-2" to='/properties'>List</Link>
+                <Link className="nav-link p-2" to='/properties'>Properties</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link p-2" to='/map'>Map</Link>

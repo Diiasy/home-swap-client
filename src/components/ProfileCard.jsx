@@ -7,7 +7,7 @@ class ProfileCard extends Component {
     render() {
         let pictures = this.props.user.pictures;
         return(
-            <div  className="row justify-content-center m-3">
+            <div  className="row justify-content-between m-3">
             
                 <div className="col-md-10 col-lg-4 my-2">
                     <h2>Home details</h2>

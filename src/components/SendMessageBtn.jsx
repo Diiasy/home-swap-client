@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComments } from '@fortawesome/free-solid-svg-icons';
 
 class Conversation extends Component {
     constructor(props) {
@@ -24,11 +26,9 @@ class Conversation extends Component {
 
     render() {
         return(
-            <div className="row">
-                <div className="col my-2 d-flex justify-content-end">
-                    <button onClick={this.sendMessage}>Send message</button>
-                </div>
-            </div>
+            // <div className="col m-2 d-flex justify-content-end">
+                <button className="m-3" onClick={this.sendMessage}><FontAwesomeIcon icon={faComments}/></button>
+            // </div>
 
         )
     }

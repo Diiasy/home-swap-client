@@ -10,6 +10,7 @@ import RemoveDates from '../components/RemoveDates';
 import Calendar from '../components/Calendar';
 import Reviews from '../components/Reviews';
 import SendMessageBtn from '../components/SendMessageBtn';
+import AddFavorite from '../components/AddFavorite';
 import DeleteUser from '../components/DeleteUser';
 import '../layouts/loading.css';
 
@@ -156,7 +157,11 @@ class Profile extends Component {
             return(
                 <Default>
                     <div className="container-fluid">
+                        <div className="row d-flex justify-content-end mx-3">
                             <SendMessageBtn {...this.props} className="button" />
+                            <AddFavorite {...this.props} className="button" />
+                        </div>
+
                             <ProfileCard user = {this.state.user} />
                             <div className="row d-flex justify-content-center m-3">
                                 <div className="col-md-10 my-2">
