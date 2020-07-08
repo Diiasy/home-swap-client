@@ -1,7 +1,7 @@
 import React from 'react';
 
 let mapStyles = {
-    height: "75vh"
+    height: "70vh"
 };
 
 class MapCard extends React.Component {

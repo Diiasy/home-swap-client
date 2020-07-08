@@ -32,17 +32,30 @@ class List extends Component {
             return this.setState({filteredUsers: this.state.users})
         }
         axios({
-            url:`${process.env.REACT_APP_BASE_URL}/user/search?q=${searchTerm}`,
+            url:`${process.env.REACT_APP_BASE_URL}/user/search/location?q=${searchTerm}`,
             method: "GET",
             withCredentials: true
         })
         .then(response => {
+            debugger;
             if (response.data.length === 0){
-                return;
+                axios({
+                    url:`${process.env.REACT_APP_BASE_URL}/user/search?q=${searchTerm}`,
+                    method: "GET",
+                    withCredentials: true
+                })
+                .then(response => {
+                    if (response.data.length === 0){
+                        return;
+                    } else {
+                        this.setState({filteredUsers: response.data});
+                    }
+                });
             } else {
                 this.setState({filteredUsers: response.data});
             }
-        });
+        })
+
     } 
 
     render() {

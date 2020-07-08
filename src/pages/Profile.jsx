@@ -133,7 +133,7 @@ class Profile extends Component {
                                     {this.state.calendar && <Calendar user = {this.state.user} /> }
                                     {this.state.form && <Route path={`/user/profile/:id/edit`} render={(props) => <EditProfile {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                                     {this.state.addDates && <Route path={`/user/profile/:id/available`} render={(props) => <Available {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
-                                    {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates   user={this.state.user} profileUpdate={this.profileUpdate} />} />}
+                                    {this.state.removeDates && <Route path={`/user/profile/:id/removeavailability`} render={(props) => <RemoveDates {...props} user={this.state.user} profileUpdate={this.profileUpdate} />} />}
                                     {this.state.confirmationMessage && <Route path={`/user/profile/:id/delete`} render={(props) => <DeleteUser {...props} user={this.state.user} profileUpdate={this.profileUpdate}/>} />}
                                 </div>
                                 <div className="col-md-12 col-lg-4 d-flex flex-column align-items-center">
