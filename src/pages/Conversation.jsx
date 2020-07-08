@@ -52,7 +52,6 @@ class Conversation extends Component {
     }
 
     render() {
-        if(this.state.messages.length === 0) return <div className="lds-ring col-12 d-flex justify-content-center mt-5"><div></div><div></div><div></div><div></div></div>;
         return(
         <div className="conversation">
             {

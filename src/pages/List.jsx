@@ -37,7 +37,6 @@ class List extends Component {
             withCredentials: true
         })
         .then(response => {
-            debugger;
             if (response.data.length === 0){
                 axios({
                     url:`${process.env.REACT_APP_BASE_URL}/user/search?q=${searchTerm}`,
