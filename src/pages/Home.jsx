@@ -60,7 +60,7 @@ class Home extends Component {
                       />
                       <Carousel.Caption>
                         <h3>Only for swapping.</h3>
-                        <p>As there are plenty of accomation websites out there, we only facilitate the process of swapping houses with people from different locations around the world. For renting properties you should look elwhere.</p>
+                        <p>As there are plenty of accomation websites out there, we only facilitate the process of swapping houses with people from different locations around the world.</p>
                       </Carousel.Caption>
                     </Carousel.Item>
                   </Carousel>
