@@ -37,12 +37,12 @@ button {
     text-align: center !important;
 }
 
-.button:focus {
+button:focus {
     color: white !important;
     background-color: #0E7373   !important;
 }
 
-button:focus {
+.button:focus {
     color: white !important;
     background-color: #0E7373   !important;
 }

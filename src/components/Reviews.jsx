@@ -11,6 +11,7 @@ export default class Reviews extends Component {
     constructor() {
         super();
         this.reviewUpdate = this.reviewUpdate.bind(this);
+        this.fetchReview = this.fetchReview.bind(this);
     }
 
     state = {
@@ -20,6 +21,16 @@ export default class Reviews extends Component {
     currentUser = getUser();
 
     componentDidMount(){
+        this.fetchReview();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.user._id !== prevProps.user._id) {
+            this.fetchReview();
+        }
+    }
+
+    fetchReview(){
         axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${this.props.user._id}/reviews`, {withCredentials: true})
         .then(response => {
             let reviews = response.data;
