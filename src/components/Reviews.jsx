@@ -12,6 +12,7 @@ export default class Reviews extends Component {
         super();
         this.reviewUpdate = this.reviewUpdate.bind(this);
         this.fetchReview = this.fetchReview.bind(this);
+        this.deletedReviewer = this.deletedReviewer.bind(this);
     }
 
     state = {
@@ -49,6 +50,16 @@ export default class Reviews extends Component {
         });
     }
 
+    deletedReviewer(review){
+        debugger;
+        if(review.reviewer == null){
+            return "Deleted User";
+        }
+        else {
+            return review.reviewer.name;
+        }
+    }
+
     render() {
         if(this.state.reviews === null ) return <h1>No reviews for this user.</h1>;
         let addReview;
@@ -66,7 +77,7 @@ export default class Reviews extends Component {
                         this.state.reviews.map((review)=>
                                 <div className="text-wrap list-text m-2" key={uid()}>
                                     <p>{review.content}</p>
-                                    <h6><span className="font-weight-bold">Reviewed by: </span>{review.reviewer.name} <span className="font-weight-bold">Score: </span>{review.score}</h6>
+                                    <h6><span className="font-weight-bold">Reviewed by: </span>{this.deletedReviewer(review)} <span className="font-weight-bold">Score: </span>{review.score}</h6>
                                     <hr/>
                             </div>
                         )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PostMessage from '../components/PostMessage';
-import '../layouts/loading.css'
+import '../layouts/loading.css';
 
 class Conversation extends Component {
     constructor(props){
