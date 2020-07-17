@@ -26,10 +26,7 @@ class Conversation extends Component {
 
     render() {
         return(
-            // <div className="col m-2 d-flex justify-content-end">
-                <button className="m-3" onClick={this.sendMessage}><FontAwesomeIcon icon={faComments}/></button>
-            // </div>
-
+            <button className="m-3" onClick={this.sendMessage}><FontAwesomeIcon icon={faComments}/></button>
         )
     }
     }

@@ -32,9 +32,7 @@ class Favorite extends Component {
 
     render() {
         return(
-            // <div className="col m-2 d-flex justify-content-end">
-                <button className="m-3"  onClick={this.addToFavorite}><FontAwesomeIcon icon={faStar}/></button>
-            // </div>
+            <button className="m-3"  onClick={this.addToFavorite}><FontAwesomeIcon icon={faStar}/></button>
         )
     }
 }

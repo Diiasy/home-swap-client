@@ -36,7 +36,7 @@ class Signup extends Component {
             <Default>
                 <div class="container d-flex justify-content-center my-3">
                     <div class="col-8">
-                        <form id="form">
+                        <form  onSubmit={this.signUpUser} id="form">
                             <h2 className="mb-4">Signup</h2>
                             <div className="form-group">
                                 <label htmlFor="username">Username</label>
@@ -63,7 +63,7 @@ class Signup extends Component {
                                 <input type="text"  className="form-control form-box" name="address" onChange={this.handleChange} placeholder="Address and city"/>
                             </div>
                             
-                            <button onClick={this.signUpUser} type="submit">Submit</button>
+                            <button type="submit">Submit</button>
                         </form>
                     </div>
                 </div>

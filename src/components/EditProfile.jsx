@@ -58,7 +58,7 @@ class EditProfile extends Component {
 
     addPictureHandler(uploadedPicture) {
         let userCopy = JSON.parse(JSON.stringify(this.state.user));
-        userCopy.pictures.push(uploadedPicture)
+        userCopy.pictures.push(uploadedPicture);
         this.setState({
             user: userCopy
         })

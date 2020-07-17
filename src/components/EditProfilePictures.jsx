@@ -21,8 +21,8 @@ class EditProfilePictures extends Component {
         service.handleUpload(uploadData)
             .then(response => {
                 console.log('response is: ', response);
-                this.setState({ pictures: response.pictures });
-                this.props.addPicture(response.pictures.pop());
+                this.setState({ pictures: response });
+                this.props.addPicture(response.pop());
             })
             .catch(err => {
                 console.log("Error while uploading the file: ", err);
