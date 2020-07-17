@@ -15,12 +15,10 @@ class EditProfilePictures extends Component {
     }
 
     handleFileUpload(e) {
-        console.log("The file to be uploaded is: ", e.target.files[0]);
         const uploadData = new FormData();
         uploadData.append("pictures", e.target.files[0]);
         service.handleUpload(uploadData)
             .then(response => {
-                console.log('response is: ', response);
                 this.setState({ pictures: response });
                 this.props.addPicture(response.pop());
             })
@@ -44,8 +42,7 @@ class EditProfilePictures extends Component {
                     )
                 }
                 <input onChange={(e) => this.handleFileUpload(e)} key={uid()} type='file' name='pictures' className="form-control-file" />  
-          
-                {this.state.error && <p>{this.state.error}</p>}
+                {this.state.error && <p className="error-message">{this.state.error}</p>}
             </div>
         )
     }

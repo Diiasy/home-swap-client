@@ -9,6 +9,7 @@ class Conversation extends Component {
         this.transformDate = this.transformDate.bind(this);
         this.getTime = this.getTime.bind(this);
         this.postMessage = this.postMessage.bind(this);
+        this.deletedUser = this.deletedUser.bind(this);
     }
 
     state = {
@@ -51,6 +52,15 @@ class Conversation extends Component {
         });
     }
 
+    deletedUser(message){
+        if(message.from == null){
+            return "Deleted User";
+        }
+        else {
+            return message.from.username;
+        }
+    }
+
     render() {
         return(
         <div className="conversation">
@@ -58,7 +68,7 @@ class Conversation extends Component {
                 this.state.messages && this.state.messages.map(message => 
                     <div className = 'message' key={message._id}>
                         <p>{message.message}</p>
-                        <p><i>{message.from.username} - {this.transformDate(message.createdAt)} {this.getTime(message.createdAt)}</i></p>
+                        <p><i>{this.deletedUser(message)} - {this.transformDate(message.createdAt)} {this.getTime(message.createdAt)}</i></p>
                         <hr/>
                     </div>
                 )

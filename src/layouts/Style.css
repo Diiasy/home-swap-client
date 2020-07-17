@@ -50,3 +50,10 @@ button:focus {
 hr {
     border-color: #C1D0D9 !important;
 }
+
+.error-message{
+    color: red;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
