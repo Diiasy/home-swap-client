@@ -22,7 +22,7 @@ class ConversationList extends Component {
     .catch(error => {
       this.setState({error});
     })
-  }
+  }z
 
   render() {
     if(this.state.conversations.length === 0) return <Default><h4>No conversations yet. Why not try sending a message?</h4></Default>;

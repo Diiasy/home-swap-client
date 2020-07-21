@@ -51,7 +51,6 @@ export default class Reviews extends Component {
     }
 
     deletedReviewer(review){
-        debugger;
         if(review.reviewer == null){
             return "Deleted User";
         }
