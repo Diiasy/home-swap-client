@@ -6,6 +6,29 @@
 .conversation-link:hover {
     font-weight: 600;
     text-decoration: underline;
+}
 
+.conversation {
+    display: flex;
+    flex-direction: column;
+}
+
+.messages {
+    max-width: 600px;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+}
+
+.mymessage {
+    text-align: right;
+    background-color:#0E7373 ;
+    color: white;
+    align-self: flex-end;
+}
+
+.yourmessage {
+    background-color: #8c8c8d;
+    color: white;
 }
 

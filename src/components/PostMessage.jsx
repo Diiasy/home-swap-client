@@ -42,11 +42,11 @@ class Conversation extends Component {
     render() {
         return(
         <div className="post-message">
-            <form id="post-message">
+            <form onSubmit={this.postMessage} id="post-message">
                 <div className="form-group">
                     <textarea className="form-control" onChange={this.handleChange} name="message" placeholder="Your message"/>
                 </div>
-                <button onClick={this.postMessage} type="submit">Post</button>
+                <button type="submit">Post</button>
             </form>
         </div>
         )

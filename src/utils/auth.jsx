@@ -13,7 +13,6 @@ export const signup = (user)=>{
         url: "/user/signup",
         data: qs.stringify(user)
     })
-    .catch(err => console.log(err));
 }
 
 export const setUser = (user)=> {
@@ -30,7 +29,7 @@ export const login = (user)=>{
         url: "/user/login",
         data: qs.stringify(user)
     })
-    .then((response)=> {        
+    .then((response)=> {   
         setUser(response.data);
     })
 }

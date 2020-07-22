@@ -34,9 +34,9 @@ class Signup extends Component {
     render() {
         return (
             <Default>
-                <div class="container d-flex justify-content-center my-3">
-                    <div class="col-8">
-                        <form id="form" onSubmit={this.signUpUser}>
+                <div className="container d-flex justify-content-center my-3">
+                    <div className="col-8">
+                        <form  onSubmit={this.signUpUser} id="form">
                             <h2 className="mb-4">Signup</h2>
                             <div className="form-group">
                                 <label htmlFor="username">Username</label>
@@ -62,12 +62,12 @@ class Signup extends Component {
                                 <label className="form-label" for="Name">Address</label>
                                 <input type="text"  className="form-control form-box" name="address" onChange={this.handleChange} placeholder="Address and city"/>
                             </div>
-                            
+                            {this.state.error && <p className="error-message">{this.state.error}</p>}
                             <button type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
-                {this.state.error && <p>{this.state.error}</p>}
+
             </Default>
         )
     }

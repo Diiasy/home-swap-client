@@ -40,7 +40,7 @@ class Login extends Component {
             <Default>
                 <div className="container d-flex justify-content-center my-3">
                     <div className="col-8">
-                        <form id="form" onSubmit={this.loginUser}>
+                        <form onSubmit={this.loginUser} id="form">
                             <h2 className="mb-4">Login</h2>
                             <div className="form-group">
                                 <label htmlFor="username">Username or email</label>
@@ -50,11 +50,10 @@ class Login extends Component {
                                 <label htmlFor="password">Password</label>
                                 <input className="form-control" type="password" onChange={this.handleChange} name="password" placeholder="Password" />
                             </div>
-                            
+                            {this.state.error && <p className="error-message">{this.state.error}</p>}
                             <button type="submit">Submit</button>
                         </form>
                     </div>
-                    {this.state.error && <p>{this.state.error}</p>}
                 </div>
             </Default>
         )

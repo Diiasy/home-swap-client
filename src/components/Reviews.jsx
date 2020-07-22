@@ -4,9 +4,6 @@ import AddReview from '../components/AddReview';
 import { getUser } from '../utils/auth';
 import uid from 'uid';
 
-
-
-
 export default class Reviews extends Component {
     constructor() {
         super();

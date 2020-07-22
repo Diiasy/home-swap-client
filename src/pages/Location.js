@@ -46,9 +46,7 @@ export default class Location extends Component {
                                 
                                 <button className="btn btn-info" type="submit">Add New</button>
                             </form>
-                            {
-                                this.state.error && <p>{this.state.error}</p>
-                            }
+                            {this.state.error && <p className="error-message">{this.state.error}</p>}
                         </div>
                     </div>
                 </div>

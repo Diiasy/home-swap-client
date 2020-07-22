@@ -7,7 +7,6 @@ const service = axios.create({
 });
 
 const errorHandler = err => {
-  // console.error(err);
   throw err;
 };
 
@@ -16,8 +15,10 @@ export default {
 
   handleUpload (theFile) {
     let currentUser = getUser();
-    return service.post(`/user/profile/${currentUser._id}/edit`, theFile)
-      .then(res => res.data)
+    return service.post(`/user/profile/${currentUser._id}/edit-pictures`, theFile)
+      .then(res => {
+        return res.data
+      })
       .catch(errorHandler);
   }
 }
