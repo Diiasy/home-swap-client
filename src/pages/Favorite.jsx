@@ -46,7 +46,7 @@ class Favorite extends Component {
     }
 
     render() {
-        if(this.state.favorites.length === 0) return <Default>No favorites yet</Default>;
+        if(this.state.favorites.length === 0) return <Default><h4>No favorites yet</h4></Default>;
         return(
             <Default>
             <div className="container-fluid">
