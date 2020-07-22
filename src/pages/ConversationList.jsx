@@ -22,7 +22,7 @@ class ConversationList extends Component {
     .catch(error => {
       this.setState({error});
     })
-  }
+  }z
 
   deletedUser(conversation){
     if(conversation[1] == null){
@@ -38,7 +38,7 @@ class ConversationList extends Component {
     return(
         <Default>
         <div className="container-fluid d-flex">
-          <div className="col-3">
+          <div className="col-4">
             <h4>Chats</h4>
           {
             this.state.conversations && this.state.conversations.map(conversation => 
@@ -51,7 +51,7 @@ class ConversationList extends Component {
             )
           }
           </div>
-          <div className="col-9">
+          <div className="col-8">
             <h4>Messages</h4>
             <Route path="/conversations/:conversationId" render={props=> <Conversation key={uid()} {...props}/>} />
           </div>

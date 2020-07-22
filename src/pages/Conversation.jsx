@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PostMessage from '../components/PostMessage';
 import '../layouts/loading.css';
+import { getUser } from '../utils/auth';
+import '../layouts/ConversationList.css';
 
 class Conversation extends Component {
     constructor(props){
@@ -10,12 +12,16 @@ class Conversation extends Component {
         this.getTime = this.getTime.bind(this);
         this.postMessage = this.postMessage.bind(this);
         this.deletedUser = this.deletedUser.bind(this);
+        this.isOwner = this.isOwner.bind(this);
+
     }
 
     state = {
         messages: [],
-        error: null
+        error: null,
     }
+
+    currentUser = getUser();
 
     componentDidMount() {
         axios.get(`${process.env.REACT_APP_BASE_URL}/message/conversation/${this.props.match.params.conversationId}`, {withCredentials: true})
@@ -61,15 +67,25 @@ class Conversation extends Component {
         }
     }
 
+    isOwner(message){
+        if(message.from == null){
+            return false;
+        }
+        if (message.from.username === this.currentUser.username){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     render() {
         return(
         <div className="conversation">
             {
                 this.state.messages && this.state.messages.map(message => 
-                    <div className = 'message' key={message._id}>
+                    <div className = { this.isOwner(message) ? 'mymessage messages' : 'yourmessage messages'} key={message._id}>
                         <p>{message.message}</p>
                         <p><i>{this.deletedUser(message)} - {this.transformDate(message.createdAt)} {this.getTime(message.createdAt)}</i></p>
-                        <hr/>
                     </div>
                 )
             }

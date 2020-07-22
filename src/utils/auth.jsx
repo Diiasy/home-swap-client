@@ -30,7 +30,6 @@ export const login = (user)=>{
         data: qs.stringify(user)
     })
     .then((response)=> {   
-        debugger     
         setUser(response.data);
     })
 }
