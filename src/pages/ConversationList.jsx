@@ -22,7 +22,7 @@ class ConversationList extends Component {
     .catch(error => {
       this.setState({error});
     })
-  }z
+  }
 
   deletedUser(conversation){
     if(conversation[1] == null){
