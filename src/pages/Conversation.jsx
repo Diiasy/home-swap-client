@@ -85,7 +85,7 @@ class Conversation extends Component {
                 this.state.messages && this.state.messages.map(message => 
                     <div className = { this.isOwner(message) ? 'mymessage messages' : 'yourmessage messages'} key={message._id}>
                         <p>{message.message}</p>
-                        <p><i>{this.deletedUser(message)} - {this.transformDate(message.createdAt)} {this.getTime(message.createdAt)}</i></p>
+                        <p className="m-0"><i>{this.deletedUser(message)} - {this.transformDate(message.createdAt)} {this.getTime(message.createdAt)}</i></p>
                     </div>
                 )
             }
